@@ -7,7 +7,7 @@
     <title>LOVEGROVE DASHBOARD</title>
 
     <!-- CSS -->
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,500,600,700' rel='stylesheet' type='text/css'><!-- Google Fonts -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet"><!-- Font Awesome -->
     <link rel="stylesheet" href="css/bootstrap.css"><!-- Twitter Bootstrap -->
     <link rel="stylesheet" href="css/styles.css"><!-- Custom Styles -->
@@ -18,10 +18,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script><!-- Angular JS 1.5.0 -->
     <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script> Angular JS 1.2.21 -->
 
+   
+
 </head>
 <body>
     
-       
+
 
         <!-- Include (header) partials 
         <div ng-include="'partials/_includes/navbar.html'"></div>-->
@@ -32,8 +34,6 @@
         
 
         
-
-
                 
 
         <!-- Bootstrap core JavaScript
@@ -58,7 +58,7 @@
         <!--<script src="js/services/services.js"></script> load our service -->
 
         <!-- CONTROLLERS -->
-        <!--<script src="js/controllers/controllersClients.js"></script> load our controller -->
+        <script src="js/controllers/controllersTest.js"></script><!-- load our controller -->
         <!--<script src="js/controllers/controllersJobs.js"></script> load our controller -->
         <!--<script src="js/controllers/controllersEntrys.js"></script> load our controller -->
 

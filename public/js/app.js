@@ -1,6 +1,6 @@
 //app.js
 
-var myApp = angular.module('myApp', ['ngRoute'])
+var myApp = angular.module('myApp', ['myApp.controllersTest', 'ngRoute'])
 	.config(['$routeProvider', function ($routeProvider) {
 
 		/*
@@ -11,7 +11,7 @@ var myApp = angular.module('myApp', ['ngRoute'])
 		$routeProvider.when('/default', // comment
 			{
 				templateUrl: 'partials/default.html',
-				//controller: 'ClientListCtrl'
+				controller: 'testCtrl'
 			});
 
 		$routeProvider.when('/test', // comment
@@ -26,4 +26,10 @@ var myApp = angular.module('myApp', ['ngRoute'])
 				redirectTo: '/default',
 			});
 
+
+
 	}]);
+
+	
+
+	
