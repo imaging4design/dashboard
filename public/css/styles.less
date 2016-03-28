@@ -21,7 +21,7 @@
 @colWhite: #FFF;
 @colOffWhite: #AAA;
 @colBlue: #354052;
-@colBlueLight: #6F7E95;
+@colBlueLight: #188CD4;
 @colRed: #F30;
 
 @colSnippets: #F30;
@@ -64,7 +64,7 @@ body {
 		padding: 10px 20px;
 	}
 	h3:first-of-type {
-		border-left: solid 5px #188CD4;
+		border-left: solid 5px @colBlueLight;
 	}
 	h3:last-of-type {
 		border-left: solid 5px @colRed;
@@ -116,17 +116,19 @@ body {
 
 
 .nav-top {
+	position: relative;
 	color: #AAA;
 	background: #FFF;
-	height: 80px;
-	padding: 30px 50px;
+	height: 60px;
+	line-height: 62px;
+	padding: 0 35px;
 	border-bottom: solid 1px #EBEBEB;
 }
 
 .header-section {
-	color: #AAA;
+	color: #666;
 	background: #FFF;
-	padding: 12px 50px 20px 50px;
+	padding: 12px 35px 20px 35px;
 	border-bottom: solid 1px #EBEBEB;
 }
 
@@ -157,21 +159,63 @@ div.title {
 
 /*
 |-----------------------------------------------------------------------------------------------------------------
+| MENU NAV TOP
+|-----------------------------------------------------------------------------------------------------------------
+*/
+ul.menu-nav-top {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0;
+	li {
+		height: 59px;
+		line-height: 62px;
+		padding: 0 15px;
+		display: inline-block;
+		list-style: none;
+		border-left: solid 1px #EBEBEB;
+		float: left;
+	}
+	a li {
+		color: #888;
+		text-transform: uppercase;
+	}
+	a li:hover {
+		color: #FFF;
+		background: @colBlueLight;
+	}
+	
+
+}
+
+
+/*
+|-----------------------------------------------------------------------------------------------------------------
 | TYPOGRAPHY
 |-----------------------------------------------------------------------------------------------------------------
 */
+.header-section h1 {
+	font-weight: 400;
+	margin-bottom: 0;
+}
 .feature h3 {
 	font-size: 16px;
 	color: #FFF;
 	background: @colBlueLight;
 	margin: -20px;
 	margin-bottom: 15px;
-	padding:22px 20px 20px 20px;
+	padding:12px 20px 10px 20px;
 	text-transform: uppercase;
 	-webkit-border-radius: 4px 4px 0 0;
 	border-radius: 4px 4px 0 0;
 }
-
+p.snippet-type {
+	font-size: 60px;
+	color: #EBEBEB;
+	padding: 0px;
+	margin: 6px 0 0 0;
+	font-weight: 600;
+}
 /*
 |-----------------------------------------------------------------------------------------------------------------
 | LISTS
@@ -193,7 +237,11 @@ a:hover {
 | FORMS
 |-----------------------------------------------------------------------------------------------------------------
 */
-
+.search-top {
+	border-radius: 100px;
+	margin-top: 13px;
+	font-family: FontAwesome, @font;
+}
 
 /*
 |-----------------------------------------------------------------------------------------------------------------
@@ -221,6 +269,10 @@ a:hover {
 | MISC
 |-----------------------------------------------------------------------------------------------------------------
 */
+
+
+
+
 
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */

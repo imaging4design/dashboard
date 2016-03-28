@@ -11,14 +11,15 @@ var app = angular.module('myApp.controllersTest', []);
 app.controller('testCtrl', [
 	function() {
 
-	// content here ...
-		  
 
-	
+
 }]);
 
-
-
-
-
-
+app.directive('prettyprint', function() {
+    return {
+        restrict: 'C',
+        link: function postLink(scope, element, attrs) {
+              setTimeout(prettyPrint,300);
+        }
+    };
+});
