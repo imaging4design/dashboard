@@ -1,31 +1,90 @@
-<div class="row">
-	<div class="col-sm-12 nav-top">
+<!-- MAIN NAV BAR -->
+<nav class="navbar navbar-default navbar-fixed-top hidden-xs">
+	<div class="container-fluid container-menu">
 
-		<form>
-			<div class="row">
-				<div class="col-xs-3">
-					<input type="text" class="form-control search-top" placeholder="&#xF002; Search">
-				</div>
-			</div>
-		</form>
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#"><img src="img/LD_Logo_Small_a.png" height='20'></a>
+		</div><!-- ENDS navbar-header -->
 
-		<ul class="menu-nav-top">
-			<a href="#"><li>HTML</li></a>
-			<a href="#"><li>CSS</li></a>
-			<a href="#"><li>Javascript</li></a>
-			<a href="#"><li>PHP</li></a>
-			<a href="#"><li>OTHER</li></a>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+
+				<li uib-dropdown ng-repeat="division in divisions">
+					<a uib-dropdown-toggle>{{division.parent}}<span class="caret"></span></a>
+					<ul uib-dropdown-menu>
+						<li ng-repeat="(key, value) in division.child"><a ui-sref="#/{{value}}">{{key}}</a></li>
+					</ul>
+				</li>
+
+
+
+				<!--<li uib-dropdown>
+					<a uib-dropdown-toggle>Hosting<span class="caret"></span></a>
+					<ul uib-dropdown-menu>
+						<li><a ui-sref="#">Create Client</a></li>
+						<li><a ui-sref="#">View Client</a></li>
+					</ul>
+				</li>
+
+				<li uib-dropdown>
+					<a uib-dropdown-toggle>Snippets<span class="caret"></span></a>
+					<ul uib-dropdown-menu>
+						<li><a ui-sref="#">Create Snippet</a></li>
+						<li><a ui-sref="#">View Snippet</a></li>
+						<li><a ui-sref="#">Category</a></li>
+					</ul>
+				</li>-->
+
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="../navbar/">Logout</a></li>
+			</ul>
+		</div><!--ENDS navbar-collapse -->
+
+	</div><!-- ENDS container -->
+</nav><!-- ENDS navbar -->
+
+
+<div class="progress-bar" ng-click="showClose = false">
+	<div class="close" ng-hide="showClose" ng-click="onClickClose($event)" >Close</div>
+</div>
+
+
+
+<!-- MOBILE NAV BAR -->
+<nav id="mobile" class="visible-xs">
+	<div id="menuToggle">
+		<input type="checkbox" id="myCheckbox">
+
+		<span></span>
+		<span></span>
+		<span></span>
+
+		<ul id="menu">
+			<li ng-repeat="division in divisions" ng-click="hiddenDiv = !hiddenDiv"><a href=""><i class="fa fa-chevron-right"></i> {{division.parent}}</a>
+				<ul class="submenu" ng-show="hiddenDiv">
+					<li ng-repeat="(key, value) in division.child"><a href="#/{{value}}">{{key}}</a></li>
+				</ul>
+			</li>
+
+			<li><a href=""><i class="fa fa-chevron-right"></i> Search</a></li>
+			<li><a href=""><i class="fa fa-chevron-right"></i> Logout</a></li>
 		</ul>
 
-	</div><!-- ENDS col -->
-</div><!--ENDS row-->
+	</div>
+
+</nav>
 
 
-
-<div class="row">
-	<div class="col-sm-12 header-section">
-		<p class="pull-right snippet-type">JAVASCRIPT</p>
-		<h1>Snippets</h1>
-		<p>Grab your favourite code!</p>
-	</div><!-- ENDS col -->
-</div><!--ENDS row-->
+<div class="band-nav-mobile visible-xs">
+	<div class="logo-large">
+		<a href="#/test">LD</a>
+	</div>
+	<p>Lovegrove Design</p>
+</div><!--ENDS band-->

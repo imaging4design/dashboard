@@ -1,6 +1,7 @@
 //app.js
+//var app = angular.module('App', ['ui.router','ui.bootstrap']);
 
-var myApp = angular.module('myApp', ['myApp.controllersTest', 'ngRoute'])
+var myApp = angular.module('myApp', ['myApp.controllersTest', 'ngRoute', 'ui.bootstrap'])
 	.config(['$routeProvider', function ($routeProvider) {
 
 		/*
@@ -29,7 +30,5 @@ var myApp = angular.module('myApp', ['myApp.controllersTest', 'ngRoute'])
 
 
 	}]);
-
-	
 
 	

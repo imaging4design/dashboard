@@ -1,4 +1,9 @@
 <div class="container-fluid full-height">
+
+	<!-- Include (nav-top.html) partial -->
+	<div ng-include="'partials/_includes/nav-top.html'"></div>
+
+
 	<div class="row full-height">
 
 		<div class="col-md-2 col-sm-3 nav-side full-height">
@@ -11,9 +16,26 @@
 
 		<div class="col-lg-10 col-md-10 col-sm-9 col-right full-height">
 
-			<!-- Include (nav-top.html) partial -->
-			<span ng-include="'partials/_includes/nav-top.html'"></span>
+		
+			<div class="row">
+				<div class="col-sm-12 header-section">
+					<!-- <p class="pull-right">Grab your favourite code!</p> -->
 
+						<div class="row">
+							<div class="col-sm-6">
+								<p class="snippet-type">JAVASCRIPT</p>
+							</div>
+						
+							<div class="col-sm-6">
+								<input type="text" class="form-control search-top" placeholder="&#xF002; Search">
+							</div>
+						</div><!--ENDS row-->
+
+						
+
+					
+				</div><!-- ENDS col -->
+			</div><!--ENDS row-->
 
 			<!-- Include (xxxxxxx.html) partial -->
 			<span ng-include="'partials/test.html'"></span>
