@@ -10,6 +10,7 @@
 |-----------------------------------------------------------------------------------------------------------------
 */
 @import 'fonts/fonts.css';
+@import 'menu.less';
 
 /*
 |-----------------------------------------------------------------------------------------------------------------
@@ -26,7 +27,7 @@
 @colRed: #F30;
 @colGreen: #25CCA6;
 
-@colMenu: #25CCA6;
+@colMenu: @colGreen;
 @colSnippets: #F30;
 @colHosting: #354052;
 
@@ -54,7 +55,20 @@ html,body {
 body {
 	font-family: @font;
 	font-weight: 400;
-	padding-top: 35px;
+	padding-top: 15px;
+}
+
+body:before {
+	content: "";
+	position: fixed;
+	top: -10px;
+	left: 0;
+	width: 100%;
+	height: 10px;
+	-webkit-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+	-moz-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+	box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+	z-index: 100;
 }
 
 .main-container,
@@ -66,16 +80,20 @@ body {
 }
 
 
+.nav, 
+.pagination, 
+.carousel, 
+.panel-title a { 
+	cursor: pointer; 
+}
 
 
-
-
-
-.header-section {
+.search-section {
 	color: @colWhite;
 	background: @colGreen;
 	height:60px;
 	line-height: 62px;
+	margin-bottom: 20px;
 	padding: 0 35px;
 }
 
@@ -102,348 +120,42 @@ div.title {
 	box-shadow: 0 0 3px 3px rgba(0,0,0,0.02);
 }
 
-/*
-|-----------------------------------------------------------------------------------------------------------------
-| MAIN MENU
-|-----------------------------------------------------------------------------------------------------------------
-*/
-.container-menu {
-	background: #FFF;
-}
-.navbar-default {
-	background-color: #FFF;
-	opacity: 0.95;
-	border-color: @colMenu;
-	-webkit-box-shadow: 0 0px 3px 3px rgba(0,0,0,0.1);
-	box-shadow: 0 0px 3px 3px rgba(0,0,0,0.1);
-}
-.navbar-fixed-top {
-	position: fixed;
-	top: 0px;
-	border-width: 0px 0px 3px;
-	z-index: 20;
-}
-
-.navbar-default .navbar-nav > li > a {
-	color: #000;
-	background-color: white;
-}
-
-.navbar-default .navbar-nav > li > a:focus, 
-.navbar-default .navbar-nav > li > a:hover {
-	color: #FFF;
-	background-color: @colMenu;
-}
-.navbar-default .navbar-nav > .active > a, 
-.navbar-default .navbar-nav > .active > a:focus, 
-.navbar-default .navbar-nav > .active > a:hover {
-	color: #FFF;
-	background-color: @colMenu;
-}
-.navbar-nav > li > a {
-	font-size: 1.5em;
-	font-weight: 500;
-	padding-top: 25px;
-	padding-bottom: 25px;
-	text-transform: uppercase;
-	cursor: pointer;
-}
-.navbar-nav > li > a.translate {
-	transition: 0.15s;
-}
-.navbar > .container .navbar-brand, 
-.navbar > .container-fluid .navbar-brand {
-	 margin-left: 0; 
-}
-.navbar-header {
-	width: 100%;
-}
-.navbar-brand {
-	float: left;
-	height: 100%;
-	width: 100% !important;
-	padding: 25px;
-	font-size: 18px;
-	font-weight: 400;
-	line-height: 20px;
-	background: @colBlue;
-	display: block;
-	&:hover {
-		background-color: @colMenu !important;
-	}
-}
-.navbar-brand.translate {
-	.transition;
-}
-.nav > li > a {
-	padding-left: 20px;
-	padding-right: 20px;
-	border-right:solid 1px #EEE;
-}
-.navbar-right {
-	margin-right: 0;
-}
-.nav.navbar-right > li > a {
-	border-left: solid 1px #EEE;
-}
-
-/*
-|-----------------------------------------------------------------------------------------------------------------
-| MOBILE MENU (OFF-CANVAS)
-|-----------------------------------------------------------------------------------------------------------------
-*/
-nav#mobile {
-	position: fixed;
-	width: 44px;
-	height: 44px;
-	top: 0;
-	right: 0;
-	z-index: 12;
-	background: @colMenu;
-	transition: all .2s linear;
-	&:hover {
-		background: @colMenu;
-	}
-}
-
-nav#mobile:hover #menuToggle span {
-	background: #FFF;
-}
-
-#menuToggle {
-	display: block;
-	position: fixed;
-	top: 15px;
-	right: 12px;
-	z-index: 11;
-	-webkit-user-select: none;
-	user-select: none;
-}
-
-#menuToggle input {
-	display: block;
-	width: 50px;
-	height: 50px;
-	position: absolute;
-	top: -22px;
-	right: -15px;
-	cursor: pointer;
-	opacity: 0; /* hide this */
-	z-index: 12; /* and place it over the hamburger */
-}
-
-/* Just a quick hamburger */
-#menuToggle span {
-	display: block;
-	width: 21px;
-	height: 3px;
-	margin-bottom: 3px;
-	position: relative;
-	background: #FFF;
-	border-radius: 3px;
-	z-index: 11;
-	transform-origin: 4px 0px;
-	transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),  background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),  opacity 0.55s ease;
-}
-
-#menuToggle span:first-child { 
-	transform-origin: 0% 0%; 
-}
-
-#menuToggle span:nth-last-child(2) { 
-	transform-origin: 0% 100%; 
-}
-
-/* Transform all the slices of hamburger into a crossmark */
-#menuToggle input:checked ~ span {
-	opacity: 1;
-	transform: rotate(45deg) translate(4px, -2px);
-	background: #FFF;
-}
-
-/* But let's hide the middle one */
-#menuToggle input:checked ~ span:nth-last-child(3) {
-	opacity: 0;
-	transform: rotate(0deg) scale(0.2, 0.2);
-}
-
-/* Ohyeah and the last one should go the other direction */
-#menuToggle input:checked ~ span:nth-last-child(2) {
-	opacity: 1;
-	transform: rotate(-45deg) translate(3px, 4px);
-}
-
-/* Make this absolute positioned at the top left of the screen */
-ul#menu {
-	position: fixed;
-	top:45px;
-	left:0;
-	width: 100%;
-	padding: 0 0;
-	background: #222;
-	list-style-type: none;
-	transform-origin: 0% 0%;
-	transform: translate(100%, 0);
-	.transition-slow;
-}
-
-ul#menu li a  {
-	font-size: 18px;
-	display: block;
-	padding: 10px 15px;
-	text-transform: uppercase;
-}
-
-ul.submenu {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
-
-ul.submenu li a  {
-	font-size: 14px !important;
-	display: block;
-	padding: 10px 35px !important;
-	text-transform: uppercase;
-	list-style-type: none;
-}
-
-ul#menu li {
-	border-top: solid 1px #333;
-	border-bottom: solid 1px #000;
-}
-
-ul#menu li:first-child {
-	border-top: none;
-}
-
-ul#menu li:last-child {
-	border-bottom: none;
-}
-
-ul#menu li a {
-	color: #FFF;
-	&:hover {
-		background: @colMenu;
-		transition: background .2s linear;
-	}
-}
-
-ul#menu li a:hover i.fa {
-	color: #FFF;
-}
-
-ul#menu li a i.fa {
-	font-size: 16px;
-	color: @colMenu;
-	padding-right: 4px;
-}
-
-
-
-
-/* And let's fade it in from the left */
-#menuToggle input:checked ~ ul {
-	transform: scale(1.0, 1.0);
-	opacity: 1;
-}
-
-.logo-large {
-	position: absolute;
-	font-size: 20px;
-	background: @colMenu;
-	padding:8px 12px;
-	display: block;
-	height: 44px;
-	top: 0px;
-	left: 0px;
-	/*border-right: solid 1px #FFF;*/
-	a {
-		color: #FFF;
-		&:hover {
-			color: @colMenu;
-			transition: color 0.5s linear;
-		}
-	}
-}
-.band-nav-mobile {
-	font-size: 20px;
-	position: fixed;
-	top:0;
-	left:0;
-	width: 100%;
-	height: 45px;
-	padding: 8px 0 8px 60px;
-	background: #FFF;
-	border-bottom: solid 2px @colMenu;
-	-webkit-box-shadow: 0 0px 3px 3px rgba(0,0,0,0.1);
-	box-shadow: 0 0px 3px 3px rgba(0,0,0,0.1);
-	z-index: 11;
-	p {
-		color: #000;
-		font-weight: 400;
-		letter-spacing: -0.05em;
-		text-transform: uppercase;
-	}
-}
-
-/*
-|-----------------------------------------------------------------------------------------------------------------
-| SIDE MENU (VERTICAL)
-|-----------------------------------------------------------------------------------------------------------------
-*/
-
-.nav-side {
-	color: #999;
-	background: lighten(@colBlue, 5%);
-	p {
-		text-align: center;
-	}
-	h3 {
-		font-size:20px;
-		font-weight: 700;
-		text-transform: uppercase;
-		background: @colBlue;
-		padding-left: 15px;
-		margin: 0 -15px 1px -15px;
-		padding: 10px 20px;
-	}
-	h3:first-of-type {
-		border-left: solid 5px @colBlueLight;
-	}
-	h3:last-of-type {
-		border-left: solid 5px @colGreen;
-	}
-	.user-name {
-		font-size: 14px;
-		margin: 0 auto 40px auto;
-		text-align: center;
-		text-transform: uppercase;
-	}
-	img {
-		width: 100px;
-		height: auto;
-		margin: 10px auto 10px auto;
-	}
+.snippets-category {
+	margin-bottom: 10px;
 	ul {
-		margin: 0 -15px 1px -55px;
+		padding: 0;
+		margin-bottom: 0;
+		clear: both;
+	}
+	a li {
+		color: @colWhite;
+		margin: 0 1px 1px 0;
+		padding:10px 15px;
 		list-style: none;
-		li a {
-			color: @colOffWhite;
-			width:100%;
-			padding: 10px 25px;
-			text-transform: uppercase;
-			display: block;
-		}
-		li a:hover {
-			color: @colWhite;
-			background: @colBlue;
-			padding-left: 20px;
-			border-left: solid 5px @colRed;
-			text-decoration: none;
+		background: @colBlue;
+		display: inline-block;
+		text-transform: uppercase;
+		&:hover {
+			background: @colRed;
+			.transition;
 		}
 	}
-	
+}
+
+.snippets-list ul {
+	padding: 0;
+	a li {
+		color: #333;
+		margin-bottom: 1px;
+		padding:10px;
+		list-style: none;
+		background: @colGreyLight;
+		&:hover {
+			color:@colWhite;
+			background: @colGreen;
+			.transition-slow;
+		}
+	}
 }
 
 
@@ -452,7 +164,7 @@ ul#menu li a i.fa {
 | TYPOGRAPHY
 |-----------------------------------------------------------------------------------------------------------------
 */
-.header-section h1 {
+.search-section h1 {
 	font-weight: 400;
 	margin-bottom: 0;
 }

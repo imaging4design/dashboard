@@ -1,17 +1,20 @@
 var angular = angular;
 
-var app = angular.module('myApp.controllersTest', []);
+var app = angular.module('myApp.controllersGeneral', []);
 
 /*
 |-----------------------------------------------------------------------------------------------------------------
-| NAME :: LoginCtrl
-| Methods :: Login | Logout
+| NAME :: homeCtrl
 |-----------------------------------------------------------------------------------------------------------------
 */
-app.controller('testCtrl', ['$scope',
+app.controller('homeCtrl', ['$scope',
 	function($scope) {
 
-		// Menu items
+		/*
+		|-----------------------------------------------------------------------------------------------------------------
+		| MENU CONFIGURATION
+		|-----------------------------------------------------------------------------------------------------------------
+		*/
 		$scope.divisions = [
 			{
 				'parent' : 'Hosting',
@@ -23,23 +26,30 @@ app.controller('testCtrl', ['$scope',
 			{
 				'parent' : 'Snippets',
 				'child' : {
-					'View Snippets': 'test', 
-					'Create Snippet': 'test',
-					'Category': 'test'
+					'View Snippets': 'snippets', 
+					'Create Snippet': 'snippets/3',
+					'Category': 'snippets'
 				}
 			},
 			{
 				'parent' : 'Other',
 				'child' : {
-					'View Snippets': 'test', 
-					'Create Snippet': 'test'
+					'Misc Stuff': 'test', 
+					'More Cool Stuff': 'test'
 				}
 			}
 		];
 
+
 }]);
 
 
+
+/*
+|-----------------------------------------------------------------------------------------------------------------
+| DIRECTIVES
+|-----------------------------------------------------------------------------------------------------------------
+*/
 app.directive('prettyprint', function() {
     return {
         restrict: 'C',

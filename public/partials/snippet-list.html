@@ -17,8 +17,18 @@
 		<div ng-include="'partials/_includes/nav-search.html'"></div>
 
 
-		<!-- START MAIN CONTENT -->
-		<p>Home default page ...</p>
+		<div class="snippets-category">
+			<ul>
+				<a href="#/snippet-category/{{allSnippetCat.id}}" ng-repeat="allSnippetCat in allSnippets.all_snippetCats"><li>{{allSnippetCat.category}}</li></a>
+			</ul>
+		</div>
+
+		<!-- LIST SNIPPETS -->
+		<div class="snippets-list">
+			<ul>
+				<a ng-repeat="allSnippet in allSnippets.all_snippets | filter:search:strict" href="#/snippets/{{allSnippet.id}}"><li>{{allSnippet.name}}</li></a>
+			</ul>
+		</div>
 		
 
 	</div><!-- ENDS col -->

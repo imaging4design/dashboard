@@ -13,7 +13,16 @@
 
 Route::get('/', function () {
     return view('index');
+    //return Response::json(array('success' => true));
 });
+
+Route::get('snippets', 'SnippetController@index');
+
+Route::get('snippets/{id}', 'SnippetController@show');
+
+
+
+
 
 
 /*
