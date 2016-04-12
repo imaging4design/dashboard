@@ -27,7 +27,7 @@ app.controller('homeCtrl', ['$scope',
 				'parent' : 'Snippets',
 				'child' : {
 					'View Snippets': 'snippets', 
-					'Create Snippet': 'snippets/3',
+					'Create Snippet': 'snippet-create',
 					'Category': 'snippets'
 				}
 			},
@@ -50,17 +50,6 @@ app.controller('homeCtrl', ['$scope',
 | DIRECTIVES
 |-----------------------------------------------------------------------------------------------------------------
 */
-app.directive('prettyprint', function() {
-    return {
-        restrict: 'C',
-        link: function postLink(scope, element, attrs) {
-              setTimeout(prettyPrint, 300);
-        }
-    };
-});
-
-
-
 app.directive('menuAnimate', function ($window) {
     return function(scope, element, attrs) {
         angular.element($window).bind("scroll", function() {

@@ -13,18 +13,21 @@
         <link rel="stylesheet" href="css/styles.css"><!-- Custom Styles -->
         <link rel="stylesheet" href="js/lib/google-code-prettify/prettify.css"><!-- Custom Styles -->
 
-        <!-- JS -->
-        <script src="//code.jquery.com/jquery-1.12.0.min.js"></script><!-- jQuery 1.12.0 -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script><!-- Angular JS 1.5.0 -->
-        <script src="js/lib/google-code-prettify/prettify.js"></script><!-- Google Prettify JS -->
-    
+        <style type="text/css">
+            [ng:cloak], 
+            [ng-cloak], 
+            [data-ng-cloak], 
+            [x-ng-cloak], 
+            .ng-cloak, 
+            .x-ng-cloak {
+                display: none !important;
+            }
+        </style>
+
     </head>
 
-    <body>
+    <body ng-cloak>
     
-
-
-
 
         <!-- Add your site or application content here -->
         <div class="container-fluid full-height">
@@ -33,7 +36,13 @@
 
 
 
-        
+
+
+
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script><!-- Angular JS 1.5.0 -->
+        <script src="//code.jquery.com/jquery-1.12.0.min.js"></script><!-- jQuery 1.12.0 -->
+        <script src="js/lib/google-code-prettify/prettify.js"></script><!-- Google Prettify JS -->
                 
 
         <!-- Bootstrap core JavaScript

@@ -18,10 +18,17 @@
 
 
 		<!-- START MAIN CONTENT -->
+		<div class="snippets-category">
+			<ul>
+				<a href="#/snippets"><li>All</li></a><a href="#/snippet-category/{{allSnippetCat.id}}" ng-repeat="allSnippetCat in allSnippets.all_snippetCats"><li>{{allSnippetCat.category}}</li></a>
+			</ul>
+		</div>
+
 		<div class="feature">
 			<h3>{{snippets.name}}</h3>
 			<pre class="prettyprint linenums">{{snippets.snippet}}</pre>
 		</div>
+
 		
 
 	</div><!-- ENDS col -->

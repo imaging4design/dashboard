@@ -7,8 +7,8 @@ var app = angular.module('myApp.controllersSnippets', []);
 | NAME :: snippetCtrl
 |-----------------------------------------------------------------------------------------------------------------
 */
-app.controller('snippetListCtrl', ['$rootScope', '$scope', '$sanitize', '$routeParams', 'SnippetFactory',
-	function($rootScope, $scope, $sanitize, $routeParams, SnippetFactory) {
+app.controller('snippetCtrl', ['$rootScope', '$scope', '$routeParams', '$location', 'SnippetFactory', 'SnippetsFactory',
+	function($rootScope, $scope, $routeParams, $location, SnippetFactory, SnippetsFactory) {
 
 
 		/*
@@ -19,18 +19,6 @@ app.controller('snippetListCtrl', ['$rootScope', '$scope', '$sanitize', '$routeP
 		$rootScope.allSnippets = SnippetFactory.get();
 
 
-}]);
-
-
-/*
-|-----------------------------------------------------------------------------------------------------------------
-| NAME :: snippetsCtrl
-|-----------------------------------------------------------------------------------------------------------------
-*/
-app.controller('snippetSingleCtrl', ['$scope', '$sanitize', '$routeParams', 'SnippetsFactory',
-	function($scope, $sanitize, $routeParams, SnippetsFactory) {
-
-		
 		/*
 		|-----------------------------------------------------------------------------------------------------------------
 		| SHOW A SPECIFIC SNIPPET
@@ -38,7 +26,84 @@ app.controller('snippetSingleCtrl', ['$scope', '$sanitize', '$routeParams', 'Sni
 		*/
 		$scope.snippets = SnippetsFactory.show({id: $routeParams.id});
 
+
+		/*
+		|-----------------------------------------------------------------------------------------------------------------
+		| TRACKS THE CURRENT CATEGORY
+		|-----------------------------------------------------------------------------------------------------------------
+		*/
+		$rootScope.show = {
+			category: 'Select a Category ...'
+		};
+
+
+		$rootScope.showCategory = function (obj) {
+			console.log(obj);
+			$rootScope.show.category = obj;
+		};
+
+
+
+		/*
+		|-----------------------------------------------------------------------------------------------------------------
+		| CREATES A NEW CATEGORY
+		|-----------------------------------------------------------------------------------------------------------------
+		*/
+		$scope.createNewSnippet = function () {
+			$scope.addSnippet = SnippetFactory.create($scope.snippet);
+			$scope.addSnippet.$promise.then(function(result){
+				$scope.addSnippet = result.successMessage;
+			});
+			console.log($scope.snippet);
+		};
+
+
+		/*
+		|-----------------------------------------------------------------------------------------------------------------
+		| APPLIES 'TABBED' EFFECT FOR TEXTAREA
+		|-----------------------------------------------------------------------------------------------------------------
+		*/
+		(function() {
+
+            var tabby_opts = {tabString:'    '},
+            textarea = $('textarea');
+
+            textarea.tabby(tabby_opts);
+            textarea.height( $(window).height() -300 );
+
+        })();
+
+		
 }]);
+
+
+
+
+
+/*
+|-----------------------------------------------------------------------------------------------------------------
+| NAME :: snippetCtrl
+|-----------------------------------------------------------------------------------------------------------------
+*/
+app.controller('snippetCatCtrl', ['$rootScope', '$scope', '$routeParams', '$location', 'SnippetsCatFactory',
+	function($rootScope, $scope, $routeParams, $location, SnippetsCatFactory) {
+
+		/*
+		|-----------------------------------------------------------------------------------------------------------------
+		| SHOWS ALL SNIPPETS IN A CATEGORY
+		|-----------------------------------------------------------------------------------------------------------------
+		*/
+		$scope.catSnippets = SnippetsCatFactory.show({id: $routeParams.id});
+		$scope.catSnippets.$promise.then(function(result){
+			$scope.catSnippets = result;
+			$rootScope.snippet = {};
+			$rootScope.snippet.category = result[0].snippet_cat.category;
+		});
+
+
+}]);
+
+
 
 
 

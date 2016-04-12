@@ -13,6 +13,9 @@ class SnippetCat extends Model
 
 	// Relationships ...
 	public function snippet() {
-		return $this->hasMany('Snippet');
+		//return $this->hasMany('Snippet');
+		return $this->hasMany('Dashboard\Snippet');
 	}
+
+	
 }

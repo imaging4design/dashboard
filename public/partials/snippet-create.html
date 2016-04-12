@@ -1,0 +1,56 @@
+<!-- Include (nav-top.html) partial -->
+<div ng-include="'partials/_includes/nav-top.html'"></div>
+
+<div class="row full-height">
+
+	<div class="col-md-2 col-sm-3 nav-side full-height">
+
+		<!-- INCLUDE (nav-side.html) partial -->
+		<span ng-include="'partials/_includes/nav-side.html'"></span>
+		
+	</div><!-- ENDS col -->
+
+
+	<div class="col-lg-10 col-md-10 col-sm-9 col-right full-height">
+
+		<!-- Include (nav-search.html) partial -->
+		<div ng-include="'partials/_includes/nav-search.html'"></div>
+
+
+		<h3 ng-cloak>{{addSnippet}}</h3>
+
+		<!-- START MAIN CONTENT -->
+		<form novalidate="novalidate">
+			<fieldset class="category">
+
+				<p>snippet-create.html</p>
+
+				<div class="form-group">
+					<label class="radio-inline" ng-repeat="allSnippetCat in allSnippets.all_snippetCats">
+						<input type="radio" value="{{allSnippetCat.id}}" class="catRadio" ng-model="snippet.category" ng-click="showCategory(allSnippetCat.category);"> {{allSnippetCat.category}}
+						<i class="fa fa-check fa-symbol"></i>
+					</label>
+				</div>
+
+				<div class="row form-group">
+					<div class="col-sm-8">
+						<input type="text" class="form-control" ng-model="snippet.name" placeholder="Snippet Name">
+					</div>
+					<div class="col-sm-4">
+						<!-- <button type="submit" class="btn btn-default btn-block">SAVE</button> -->
+						<button ng-click="createNewSnippet()" class="btn btn-md btn-info">Add Snippet</button>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<textarea class="form-control snippet-textarea" ng-model="snippet.snippet" rows="20"></textarea>
+				</div>
+				
+			</fieldset>
+		</form>
+		
+		
+
+	</div><!-- ENDS col -->
+
+</div><!--ENDS row-->

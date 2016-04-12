@@ -3,7 +3,7 @@
 namespace Dashboard\Http\Controllers;
 
 use Dashboard\Http\Response;
-use Dashboard\Http\Requests;
+use Illuminate\Http\Request;
 use Dashboard\Snippet;
 use Dashboard\SnippetCat;
 
@@ -11,38 +11,75 @@ use Dashboard\SnippetCat;
 
 class SnippetController extends Controller
 {
-    
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
-    {
-        $all_snippets = Snippet::orderBy('name', 'ASC')->get();
-        $all_snippetCats = SnippetCat::get();
-        //return response()->json([$all_snippets, $all_snippetCats]);
+	
+	/**
+	 * Display a list of all snippets
+	 * Display a list of all categories
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+		$all_snippets = Snippet::orderBy('name', 'ASC')->get();
+		$all_snippetCats = SnippetCat::orderBy('id', 'ASC')->get();
 
-        return response()->json(['all_snippets' => $all_snippets, 'all_snippetCats' => $all_snippetCats]);
-    }
+		return response()->json(['all_snippets' => $all_snippets, 'all_snippetCats' => $all_snippetCats]);
+		//return response()->json(array('success' => true));
+	}
 
 
 
-    /**
-     * Show the specified photo comment.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        $snippets = Snippet::find($id);
+	/**
+	 * Display a list of snippets of a specific category
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function category($id)
+	{
+		//$snippets = Snippet::where('snippet_cat_id', $id)->get();
+		$snippets = Snippet::with('snippetCat')->where('snippet_cat_id', $id)->get();
+		return response()->json($snippets);
+	}
 
-        return response()->json($snippets);
-        //return response()->json($snippets);
 
-        //return Response::json(array('success' => true));
-    }
+
+	/**
+	 * Display a single snippet (contents)
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		$snippets = Snippet::find($id);
+		return response()->json($snippets);
+	}
+
+
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store(Request $request)
+	{
+		// Get all inputs
+		$category = $request->input('category');
+		$name = $request->input('name');
+		$snippet = $request->input('snippet');
+
+		// Create the new snippet
+		$Snippet = Snippet::create([
+			'snippet_cat_id' => $category,
+			'name' => $name,
+			'snippet' => $snippet
+		]);
+
+		return response()->json(array('successMessage' => 'Snippet Saved!'));
+	   
+	}
 
 
 

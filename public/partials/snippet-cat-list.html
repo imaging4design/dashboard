@@ -19,19 +19,19 @@
 
 		<!-- SHOW CATEGORY BUTTONS (i.e. CSS, jQuery, PHP) -->
 		<div class="snippets-category">
-			<p>snippet-list.html</p>
+			<p>snippet-cat-list.html</p>
 			<ul>
 				<a href="#/snippets"><li>All</li></a><a href="#/snippet-category/{{showCat.id}}" ng-repeat="showCat in allSnippets.all_snippetCats" ng-click="showCategory(showCat.category);"><li>{{showCat.category}}</li></a>
 			</ul>
 		</div>
 
-		<!-- LIST ALL SNIPPETS -->
+		<!-- LIST SNIPPET TITLES FOR EACH CATEGORY -->
 		<div class="snippets-list">
 			<ul>
-				<a ng-repeat="allSnippet in allSnippets.all_snippets | filter:search:strict" href="#/snippets/{{allSnippet.id}}"><li>{{allSnippet.name}}</li></a>
+				<a ng-repeat="catSnippet in catSnippets | filter:search:strict" href="#/snippets/{{catSnippet.id}}" ><li>{{catSnippet.name}}</li></a>
 			</ul>
 		</div>
-		
+
 
 	</div><!-- ENDS col -->
 

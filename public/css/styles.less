@@ -178,6 +178,7 @@ div.title {
 p.snippet-type {
 	font-size: 20px;
 	font-weight: 600;
+	text-transform: uppercase;
 }
 /*
 |-----------------------------------------------------------------------------------------------------------------
@@ -210,9 +211,63 @@ a:focus {
 	width:40%;
 	float: right;
 }
+
 .search-top:focus {
 	width:100%;
 	transition: width .3s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+}
+
+.snippet-textarea {
+	font-family: Courier;
+	font-size: 15px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 23px;
+	color: @colWhite;
+	background: @colBlue;
+}
+
+input[type="text"], textarea {
+	outline: none;
+	box-shadow:none !important;
+	border:1px solid #ccc !important;
+}
+
+
+.category label {
+	color: @colWhite;
+	background: @colBlue;
+	margin: 0 1px 0 0;
+	padding-left: 0;
+	padding: 10px 15px;
+	text-transform: uppercase;
+	display: block;
+}
+
+
+.radio-inline + .radio-inline, 
+.checkbox-inline + .checkbox-inline {
+    margin-top: 0;
+    margin-left: 0;
+}
+
+input.catRadio {
+	cursor: pointer;
+	opacity:1; /* hide this */
+	z-index: 12; /* and place it over the hamburger */
+	display: none;
+}
+input.catRadio + .fa-symbol {
+	display: none;
+}
+input.catRadio:checked + .fa-symbol {
+	color: @colGreen;
+	display: inline-block;
+}
+
+input.catRadio:checked {
+	opacity: 1;
 }
 
 /*
@@ -248,6 +303,12 @@ a:focus {
 }
 
 
+/*
+|-----------------------------------------------------------------------------------------------------------------
+| ANGULAR JS SPECIFIC
+|-----------------------------------------------------------------------------------------------------------------
+*/
+
 
 
 /* Extra small devices (phones, less than 768px) */
@@ -258,6 +319,10 @@ a:focus {
 
 	body {
 		padding-top: 70px;
+	}
+
+	.category label {
+		display: inline-block;
 	}
   
 }

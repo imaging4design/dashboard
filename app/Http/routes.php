@@ -17,8 +17,14 @@ Route::get('/', function () {
 });
 
 Route::get('snippets', 'SnippetController@index');
+Route::post('snippets', 'SnippetController@store');
+
+
+Route::get('snippet-category/{id}', 'SnippetController@category');
 
 Route::get('snippets/{id}', 'SnippetController@show');
+
+
 
 
 

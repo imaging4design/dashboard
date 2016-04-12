@@ -9,7 +9,7 @@ var myApp = angular.module('myApp', ['myApp.services', 'myApp.controllersGeneral
 		| XXXX Routes
 		|-----------------------------------------------------------------------------------------------------------------
 		*/
-		$routeProvider.when('/default', // comment
+		$routeProvider.when('/default', // The default home page
 			{
 				templateUrl: 'partials/default.html',
 				controller: 'homeCtrl'
@@ -19,22 +19,33 @@ var myApp = angular.module('myApp', ['myApp.services', 'myApp.controllersGeneral
 		$routeProvider.when('/snippets', // Show list of Snippets
 			{
 				templateUrl: 'partials/snippet-list.html',
-				controller: 'snippetListCtrl'
+				controller: 'snippetCtrl'
 			});
 
 
-		$routeProvider.when('/snippet-category/:id', // Show list of Snippets
+		$routeProvider.when('/snippet-category/:id', // Show list of Snippets for category
+			{
+				templateUrl: 'partials/snippet-cat-list.html',
+				controller: 'snippetCatCtrl'
+			});
+
+
+		$routeProvider.when('/snippets/:id', // Show a specific snippet
 			{
 				templateUrl: 'partials/snippet-single.html',
-				controller: 'snippetSingleCtrl'
+				controller: 'snippetCtrl'
 			});
 
 
-		$routeProvider.when('/snippets/:id', // Show list of Snippets
+		$routeProvider.when('/snippet-create', // Show empty form ready to create a new snippet
 			{
-				templateUrl: 'partials/snippet-single.html',
-				controller: 'snippetSingleCtrl'
+				templateUrl: 'partials/snippet-create.html',
+				controller: 'snippetCtrl'
 			});
+
+
+
+
 
 
 

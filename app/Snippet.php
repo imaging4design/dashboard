@@ -13,7 +13,8 @@ class Snippet extends Model
 
 	// Relationships ...
 	public function snippetCat() {
-		return $this->hasOne('SnippetCat');
+		//return $this->hasOne('SnippetCat');
+		return $this->belongsTo('Dashboard\SnippetCat');
 	}
 
 }
