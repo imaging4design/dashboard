@@ -21,14 +21,24 @@
 		<div class="snippets-category">
 			<p>snippet-cat-list.html</p>
 			<ul>
-				<a href="#/snippets"><li>All</li></a><a href="#/snippet-category/{{showCat.id}}" ng-repeat="showCat in allSnippets.all_snippetCats" ng-click="showCategory(showCat.category);"><li>{{showCat.category}}</li></a>
+				<a href="#/snippet-category/{{category.id}}" ng-repeat="category in categories" ng-click="showCategory(category.category);"><li>{{category.category}}</li></a>
 			</ul>
 		</div>
+
+
+		<!-- IF NO RESULTS RETURNED SHOW INTRO TEXT -->
+		<div ng-if='snippets.length === 0'>
+			<h2>Welome to snippets central</h2>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu viverra diam. Phasellus imperdiet nunc nulla, eu ullamcorper felis lobortis vitae. Donec euismod odio in sapien vehicula, vitae tincidunt lectus lobortis. Sed justo lorem, pretium ut tristique nec, cursus ac arcu. Quisque vitae tortor tortor. Sed ut quam pulvinar, vulputate leo vitae, aliquam quam. Praesent quis lectus tortor. Donec ultrices viverra ultrices. Vivamus lobortis eu justo eget placerat. Maecenas blandit nisl eu nibh faucibus porta. Praesent mi dui, ultricies ut dolor ut, efficitur feugiat velit. Mauris lacus nisi, placerat sed blandit non, placerat nec diam. 
+			</p>
+		</div>
+		
 
 		<!-- LIST SNIPPET TITLES FOR EACH CATEGORY -->
 		<div class="snippets-list">
 			<ul>
-				<a ng-repeat="catSnippet in catSnippets | filter:search:strict" href="#/snippets/{{catSnippet.id}}" ><li>{{catSnippet.name}}</li></a>
+				<a ng-repeat="snippet in snippets | filter:{name: search}" href="#/snippets/{{snippet.id}}" ><li>{{snippet.name}}</li></a>
 			</ul>
 		</div>
 

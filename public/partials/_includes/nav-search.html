@@ -6,13 +6,14 @@
 
 		<div class="row">
 			<div class="col-xs-5">
-				<p class="snippet-type">{{show.category}}</p>
+				<p class="snippet-type" ng-if='!test'>Select Category</p>
+				<p class="snippet-type">{{test}}</p>
 			</div>
 		
 			<div class="col-xs-7">
 				<!-- Note about ng-model="$parent.search.name" -->
 				<!-- $parent.search.name => allows as to keep the search filter via ng-include -->
-				<input type="text" class="form-control search-top" placeholder="&#xF002; Search" ng-model="$parent.search.name">
+				<input type="text" class="form-control search-top" placeholder="&#xF002; Search" ng-model="$parent.search">
 			</div>
 		</div><!--ENDS row-->
 

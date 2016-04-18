@@ -20,7 +20,7 @@
 		<!-- START MAIN CONTENT -->
 		<div class="snippets-category">
 			<ul>
-				<a href="#/snippets"><li>All</li></a><a href="#/snippet-category/{{allSnippetCat.id}}" ng-repeat="allSnippetCat in allSnippets.all_snippetCats"><li>{{allSnippetCat.category}}</li></a>
+				<a href="#/snippet-category/{{category.id}}" ng-repeat="category in categories" ng-click="showCategory(category.category);"><li>{{category.category}}</li></a>
 			</ul>
 		</div>
 

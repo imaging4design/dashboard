@@ -25,16 +25,17 @@
 
 				<p>snippet-create.html</p>
 
+
 				<div class="form-group">
-					<label class="radio-inline" ng-repeat="allSnippetCat in allSnippets.all_snippetCats">
-						<input type="radio" value="{{allSnippetCat.id}}" class="catRadio" ng-model="snippet.category" ng-click="showCategory(allSnippetCat.category);"> {{allSnippetCat.category}}
+					<label class="radio-inline" ng-repeat="cat in categories">
+						<input type="radio" ng-value="cat.id" class="catRadio" name="category" ng-model="$parent.addSnippet.category" ng-click="showCategory(cat.category);"> {{cat.category}}
 						<i class="fa fa-check fa-symbol"></i>
 					</label>
 				</div>
 
 				<div class="row form-group">
 					<div class="col-sm-8">
-						<input type="text" class="form-control" ng-model="snippet.name" placeholder="Snippet Name">
+						<input type="text" class="form-control" ng-model="addSnippet.name" placeholder="Snippet Name">
 					</div>
 					<div class="col-sm-4">
 						<!-- <button type="submit" class="btn btn-default btn-block">SAVE</button> -->
@@ -43,7 +44,7 @@
 				</div>
 
 				<div class="form-group">
-					<textarea class="form-control snippet-textarea" ng-model="snippet.snippet" rows="20"></textarea>
+					<textarea class="form-control snippet-textarea" ng-model="addSnippet.snippet" rows="20"></textarea>
 				</div>
 				
 			</fieldset>

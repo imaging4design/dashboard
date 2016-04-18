@@ -13,34 +13,34 @@ app.controller('snippetCtrl', ['$rootScope', '$scope', '$routeParams', '$locatio
 
 		/*
 		|-----------------------------------------------------------------------------------------------------------------
-		| LIST ALL SNIPPETS & SNIPPET CATEGORIES
+		| GETS LIST OF ALL SNIPPETS
+		| GETS LIST OF ALL CATEGORIES
 		|-----------------------------------------------------------------------------------------------------------------
 		*/
-		$rootScope.allSnippets = SnippetFactory.get();
+		//$scope.allSnippets = SnippetFactory.get();
 
 
 		/*
 		|-----------------------------------------------------------------------------------------------------------------
-		| SHOW A SPECIFIC SNIPPET
+		| SHOW A (SINGLE) SPECIFIC SNIPPET
 		|-----------------------------------------------------------------------------------------------------------------
 		*/
-		$scope.snippets = SnippetsFactory.show({id: $routeParams.id});
+		$scope.singleSnippets = SnippetsFactory.show({id: $routeParams.id});
+
+		$scope.singleSnippets.$promise.then(function(result){
+			$scope.snippets = result.snippets;
+			$scope.categories = result.categories;
+		});
 
 
-		/*
-		|-----------------------------------------------------------------------------------------------------------------
-		| TRACKS THE CURRENT CATEGORY
-		|-----------------------------------------------------------------------------------------------------------------
-		*/
-		$rootScope.show = {
-			category: 'Select a Category ...'
-		};
-
+		
+		
 
 		$rootScope.showCategory = function (obj) {
-			console.log(obj);
-			$rootScope.show.category = obj;
+			$rootScope.test = obj;
+			console.log('Category is: ' + obj);
 		};
+
 
 
 
@@ -50,12 +50,14 @@ app.controller('snippetCtrl', ['$rootScope', '$scope', '$routeParams', '$locatio
 		|-----------------------------------------------------------------------------------------------------------------
 		*/
 		$scope.createNewSnippet = function () {
-			$scope.addSnippet = SnippetFactory.create($scope.snippet);
+			$scope.addSnippet = SnippetFactory.create($scope.addSnippet);
 			$scope.addSnippet.$promise.then(function(result){
 				$scope.addSnippet = result.successMessage;
 			});
-			console.log($scope.snippet);
+			console.log($scope.addSnippet.category);
 		};
+
+		
 
 
 		/*
@@ -88,17 +90,35 @@ app.controller('snippetCtrl', ['$rootScope', '$scope', '$routeParams', '$locatio
 app.controller('snippetCatCtrl', ['$rootScope', '$scope', '$routeParams', '$location', 'SnippetsCatFactory',
 	function($rootScope, $scope, $routeParams, $location, SnippetsCatFactory) {
 
+
+		/*
+		|-----------------------------------------------------------------------------------------------------------------
+		| TRACKS THE CURRENT CATEGORY
+		|-----------------------------------------------------------------------------------------------------------------
+		*/
+		//$rootScope.test = 'Select a Category ...';
+
+
+		$rootScope.showCategory = function (obj) {
+			$rootScope.test = obj;
+			console.log('Category is: ' + obj);
+		};
+
+
+
+
 		/*
 		|-----------------------------------------------------------------------------------------------------------------
 		| SHOWS ALL SNIPPETS IN A CATEGORY
 		|-----------------------------------------------------------------------------------------------------------------
 		*/
-		$scope.catSnippets = SnippetsCatFactory.show({id: $routeParams.id});
-		$scope.catSnippets.$promise.then(function(result){
-			$scope.catSnippets = result;
-			$rootScope.snippet = {};
-			$rootScope.snippet.category = result[0].snippet_cat.category;
+		$scope.snippetsPerCategory = SnippetsCatFactory.show({id: $routeParams.id});
+		
+		$scope.snippetsPerCategory.$promise.then(function(result){
+			$scope.snippets = result.snippets;
+			$scope.categories = result.categories;
 		});
+
 
 
 }]);
@@ -112,6 +132,7 @@ app.controller('snippetCatCtrl', ['$rootScope', '$scope', '$routeParams', '$loca
 | DIRECTIVES
 |-----------------------------------------------------------------------------------------------------------------
 */
+
 app.directive('prettyprint', function() {
     return {
         restrict: 'C',

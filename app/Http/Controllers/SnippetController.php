@@ -23,7 +23,7 @@ class SnippetController extends Controller
 		$all_snippets = Snippet::orderBy('name', 'ASC')->get();
 		$all_snippetCats = SnippetCat::orderBy('id', 'ASC')->get();
 
-		return response()->json(['all_snippets' => $all_snippets, 'all_snippetCats' => $all_snippetCats]);
+		return response()->json(['snippets' => $all_snippets, 'categories' => $all_snippetCats]);
 		//return response()->json(array('success' => true));
 	}
 
@@ -37,9 +37,10 @@ class SnippetController extends Controller
 	 */
 	public function category($id)
 	{
-		//$snippets = Snippet::where('snippet_cat_id', $id)->get();
-		$snippets = Snippet::with('snippetCat')->where('snippet_cat_id', $id)->get();
-		return response()->json($snippets);
+		$categories = SnippetCat::orderBy('id', 'ASC')->get();
+		$snippets = Snippet::with('snippetCat')->where('snippet_cat_id', $id)->orderBy('id', 'ASC')->get();
+
+		return response()->json(['snippets' => $snippets, 'categories' => $categories]);
 	}
 
 
@@ -52,8 +53,10 @@ class SnippetController extends Controller
 	 */
 	public function show($id)
 	{
+		$categories = SnippetCat::orderBy('id', 'ASC')->get();
 		$snippets = Snippet::find($id);
-		return response()->json($snippets);
+
+		return response()->json(['snippets' => $snippets, 'categories' => $categories]);
 	}
 
 

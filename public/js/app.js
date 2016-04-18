@@ -16,13 +16,6 @@ var myApp = angular.module('myApp', ['myApp.services', 'myApp.controllersGeneral
 			});
 
 
-		$routeProvider.when('/snippets', // Show list of Snippets
-			{
-				templateUrl: 'partials/snippet-list.html',
-				controller: 'snippetCtrl'
-			});
-
-
 		$routeProvider.when('/snippet-category/:id', // Show list of Snippets for category
 			{
 				templateUrl: 'partials/snippet-cat-list.html',

@@ -27,7 +27,7 @@ services.factory('SnippetsFactory', function($resource) {
 
 services.factory('SnippetsCatFactory', function($resource) {
 		return $resource('/laravel_dashboard/public/snippet-category/:id', {}, {
-			show: { method: 'GET', isArray: true }
+			show: { method: 'GET', isArray: false },
 		});
 	});
 

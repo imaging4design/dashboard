@@ -26,7 +26,7 @@ app.controller('homeCtrl', ['$scope',
 			{
 				'parent' : 'Snippets',
 				'child' : {
-					'View Snippets': 'snippets', 
+					'View Snippets': 'snippet-category/0', 
 					'Create Snippet': 'snippet-create',
 					'Category': 'snippets'
 				}
