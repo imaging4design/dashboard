@@ -11,7 +11,7 @@ var services = angular.module('myApp.services', ['ngResource', 'ngSanitize']);
 
 services.factory('SnippetFactory', function($resource) {
 		return $resource('/laravel_dashboard/public/snippets', {}, {
-			get: { method: 'GET', isArray: false },
+			//get: { method: 'GET', isArray: false },
 			create: { method: 'POST' }
 		});
 	});

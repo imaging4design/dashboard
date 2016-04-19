@@ -37,6 +37,13 @@ var myApp = angular.module('myApp', ['myApp.services', 'myApp.controllersGeneral
 			});
 
 
+		$routeProvider.when('/edit/:id', // Show form with raw snippet for editing 
+			{
+				templateUrl: 'partials/snippet-edit.html',
+				controller: 'snippetCtrl'
+			});
+
+
 
 
 

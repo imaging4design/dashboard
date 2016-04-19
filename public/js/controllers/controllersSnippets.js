@@ -13,15 +13,6 @@ app.controller('snippetCtrl', ['$rootScope', '$scope', '$routeParams', '$locatio
 
 		/*
 		|-----------------------------------------------------------------------------------------------------------------
-		| GETS LIST OF ALL SNIPPETS
-		| GETS LIST OF ALL CATEGORIES
-		|-----------------------------------------------------------------------------------------------------------------
-		*/
-		//$scope.allSnippets = SnippetFactory.get();
-
-
-		/*
-		|-----------------------------------------------------------------------------------------------------------------
 		| SHOW A (SINGLE) SPECIFIC SNIPPET
 		|-----------------------------------------------------------------------------------------------------------------
 		*/
@@ -33,15 +24,15 @@ app.controller('snippetCtrl', ['$rootScope', '$scope', '$routeParams', '$locatio
 		});
 
 
-		
-		
-
+		/*
+		|-----------------------------------------------------------------------------------------------------------------
+		| SHOW 'CLICKED ON' CATEGORY
+		|-----------------------------------------------------------------------------------------------------------------
+		*/
 		$rootScope.showCategory = function (obj) {
-			$rootScope.test = obj;
+			$rootScope.theCategory = obj;
 			console.log('Category is: ' + obj);
 		};
-
-
 
 
 		/*
@@ -49,7 +40,7 @@ app.controller('snippetCtrl', ['$rootScope', '$scope', '$routeParams', '$locatio
 		| CREATES A NEW CATEGORY
 		|-----------------------------------------------------------------------------------------------------------------
 		*/
-		$scope.createNewSnippet = function () {
+		$scope.createNewSnippet = function() {
 			$scope.addSnippet = SnippetFactory.create($scope.addSnippet);
 			$scope.addSnippet.$promise.then(function(result){
 				$scope.addSnippet = result.successMessage;
@@ -57,8 +48,26 @@ app.controller('snippetCtrl', ['$rootScope', '$scope', '$routeParams', '$locatio
 			console.log($scope.addSnippet.category);
 		};
 
-		
 
+		/*
+		|-----------------------------------------------------------------------------------------------------------------
+		| EDIT A SNIPPET
+		|-----------------------------------------------------------------------------------------------------------------
+		*/
+		$scope.editSnippet = function(obj, id) {
+			$scope.test = obj;
+			console.log( 'Editing snippet: ' + obj + ' id: ' + id );
+		};
+
+
+		/*
+		|-----------------------------------------------------------------------------------------------------------------
+		| UPDATES A SNIPPET
+		|-----------------------------------------------------------------------------------------------------------------
+		*/
+		$scope.updateSnippet = function() {
+			console.log('updated!');
+		};
 
 		/*
 		|-----------------------------------------------------------------------------------------------------------------
@@ -93,18 +102,13 @@ app.controller('snippetCatCtrl', ['$rootScope', '$scope', '$routeParams', '$loca
 
 		/*
 		|-----------------------------------------------------------------------------------------------------------------
-		| TRACKS THE CURRENT CATEGORY
+		| SHOW 'CLICKED ON' CATEGORY
 		|-----------------------------------------------------------------------------------------------------------------
 		*/
-		//$rootScope.test = 'Select a Category ...';
-
-
 		$rootScope.showCategory = function (obj) {
-			$rootScope.test = obj;
+			$rootScope.theCategory = obj;
 			console.log('Category is: ' + obj);
 		};
-
-
 
 
 		/*
@@ -118,7 +122,6 @@ app.controller('snippetCatCtrl', ['$rootScope', '$scope', '$routeParams', '$loca
 			$scope.snippets = result.snippets;
 			$scope.categories = result.categories;
 		});
-
 
 
 }]);

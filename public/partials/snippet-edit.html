@@ -20,21 +20,31 @@
 		<!-- START MAIN CONTENT -->
 		<div class="snippets-category">
 
-			<p>snippet-single.html (snippetCtrl)</p>
+			<p>snippet-edit.html (snippetCtrl)</p>
 
 			<ul>
 				<a href="#/snippet-category/{{category.id}}" ng-repeat="category in categories" ng-click="showCategory(category.category);"><li>{{category.category}}</li></a>
 			</ul>
 		</div>
 
-		<div class="feature">
-			<h3>{{snippets.name}}</h3>
-			<pre class="prettyprint linenums">{{snippets.snippet}}</pre>
 
-			<a href="#/edit/{{snippets.id}}" class="btn btn-md btn-info" ng-click="editSnippet(snippets.name, snippets.id)">Edir Snippet</a>
-
-		</div>
-
+		<form novalidate="novalidate" class="feature">
+			<fieldset class="category">
+				<div class="row form-group">
+					<div class="col-sm-8">
+						<input type="text" class="form-control" value="{{snippets.name}}">
+					</div>
+					<div class="col-sm-4">
+						<button ng-click="updateSnippet()" class="btn btn-md btn-info">Save Snippet</button>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-sm-12">
+						<textarea class="form-control snippet-textarea prettyprint linenums">{{snippets.snippet}}</textarea>
+					</div>
+				</div>
+			</fieldset>
+		</form>
 
 
 	</div><!-- ENDS col -->
