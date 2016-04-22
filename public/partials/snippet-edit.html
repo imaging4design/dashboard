@@ -31,16 +31,20 @@
 		<form novalidate="novalidate" class="feature">
 			<fieldset class="category">
 				<div class="row form-group">
-					<div class="col-sm-8">
-						<input type="text" class="form-control" value="{{snippets.name}}">
+					<div class="col-sm-6">
+						<input type="hidden" ng-value="{{snippets.id}}" ng-model="snippets.id">
+						<input type="text" class="form-control" ng-value="{{snippets.name}}" ng-model="snippets.name">
 					</div>
 					<div class="col-sm-4">
+						<input type="text" class="form-control" ng-value="{{snippets.reference_url}}" ng-model="snippets.reference_url">
+					</div>
+					<div class="col-sm-2">
 						<button ng-click="updateSnippet()" class="btn btn-md btn-info">Save Snippet</button>
 					</div>
 				</div>
 				<div class="row form-group">
 					<div class="col-sm-12">
-						<textarea class="form-control snippet-textarea prettyprint linenums">{{snippets.snippet}}</textarea>
+						<textarea class="form-control snippet-textarea" ng-model="snippets.snippet">{{snippets.snippet}}</textarea>
 					</div>
 				</div>
 			</fieldset>

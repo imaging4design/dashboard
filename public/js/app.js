@@ -16,6 +16,13 @@ var myApp = angular.module('myApp', ['myApp.services', 'myApp.controllersGeneral
 			});
 
 
+		$routeProvider.when('/snippets', // Show ALL snippets
+			{
+				templateUrl: 'partials/snippets.html',
+				controller: 'snippetCtrl'
+			});
+
+
 		$routeProvider.when('/snippet-category/:id', // Show list of Snippets for category
 			{
 				templateUrl: 'partials/snippet-cat-list.html',
@@ -30,6 +37,13 @@ var myApp = angular.module('myApp', ['myApp.services', 'myApp.controllersGeneral
 			});
 
 
+		$routeProvider.when('/snippets/edit/:id', // Show a specific snippet
+			{
+				templateUrl: 'partials/snippet-edit.html',
+				controller: 'snippetCtrl'
+			});
+
+
 		$routeProvider.when('/snippet-create', // Show empty form ready to create a new snippet
 			{
 				templateUrl: 'partials/snippet-create.html',
@@ -37,11 +51,6 @@ var myApp = angular.module('myApp', ['myApp.services', 'myApp.controllersGeneral
 			});
 
 
-		$routeProvider.when('/edit/:id', // Show form with raw snippet for editing 
-			{
-				templateUrl: 'partials/snippet-edit.html',
-				controller: 'snippetCtrl'
-			});
 
 
 

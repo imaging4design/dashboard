@@ -2,6 +2,38 @@ var angular = angular;
 
 var app = angular.module('myApp.controllersSnippets', []);
 
+
+
+		/*
+		|-----------------------------------------------------------------------------------------------------------------
+		| NOTE TO GAVIN
+		|-----------------------------------------------------------------------------------------------------------------
+		| EVERY PAGE THAT USES THIS CTRL WILL ENVOKE ALL THESE FUNCTIONS !!!!
+		| IT'S A WASTE AND I THINK SOME ARE CONFLICTING WITH EACH OTHER ...
+		|
+		| BEST SPLIT THE CTRL'S UP INTO THE FOLLOWING:
+		| ONE FOR LISTING SNIPPETS - snipShowCtrl
+		| ONE FOR CREATING SNIPPETS - snipCreateCtrl
+		| ONE FOR EDITING SNIPPETS - snipEditCtrl
+		| ONE FOR DELETING SNIPPETS - snipDeleteCtrl
+		|
+		| THIS WILL MAKE THINGS A LITTLE MORE CLEARER ... 
+		|-----------------------------------------------------------------------------------------------------------------
+		*/
+
+
+/*
+|-----------------------------------------------------------------------------------------------------------------
+| NAME :: snipShowCtrl
+|-----------------------------------------------------------------------------------------------------------------
+*/
+app.controller('snipShowCtrl', ['$rootScope', '$scope', '$routeParams', '$location', 'SnippetFactory', 'SnippetsFactory',
+	function($rootScope, $scope, $routeParams, $location, SnippetFactory, SnippetsFactory) {
+
+
+
+}]);
+
 /*
 |-----------------------------------------------------------------------------------------------------------------
 | NAME :: snippetCtrl
@@ -9,6 +41,21 @@ var app = angular.module('myApp.controllersSnippets', []);
 */
 app.controller('snippetCtrl', ['$rootScope', '$scope', '$routeParams', '$location', 'SnippetFactory', 'SnippetsFactory',
 	function($rootScope, $scope, $routeParams, $location, SnippetFactory, SnippetsFactory) {
+
+
+		
+
+
+		/*
+		|-----------------------------------------------------------------------------------------------------------------
+		| SHOW (ALL) SNIPPETS
+		|-----------------------------------------------------------------------------------------------------------------
+		*/
+		$scope.snippets = SnippetFactory.show();
+		$scope.snippets.$promise.then(function(result) {
+			$scope.snippets = result.snippets;
+			$scope.categories = result.categories;
+		});
 
 
 		/*
@@ -66,8 +113,23 @@ app.controller('snippetCtrl', ['$rootScope', '$scope', '$routeParams', '$locatio
 		|-----------------------------------------------------------------------------------------------------------------
 		*/
 		$scope.updateSnippet = function() {
-			console.log('updated!');
+
+			$scope.updateSnippet = SnippetsFactory.update($scope.snippets);
+			$scope.updateSnippet.$promise.then(function(result){
+				$scope.updateSnippet = result.successMessage;
+			});
+
+			console.log($scope.snippets);
 		};
+
+		// $scope.updateClient = function () {
+		// 	ClientFactory.update($scope.client).$promise.then(function() {
+		// 		$location.path('/client-list/');
+		// 	});
+		// };
+
+
+
 
 		/*
 		|-----------------------------------------------------------------------------------------------------------------
@@ -80,9 +142,13 @@ app.controller('snippetCtrl', ['$rootScope', '$scope', '$routeParams', '$locatio
             textarea = $('textarea');
 
             textarea.tabby(tabby_opts);
-            textarea.height( $(window).height() -300 );
+            textarea.height( $(window).height() -400 );
 
         })();
+
+		
+
+
 
 		
 }]);

@@ -16,13 +16,15 @@ Route::get('/', function () {
     //return Response::json(array('success' => true));
 });
 
-Route::get('snippets', 'SnippetController@index');
-Route::post('snippets', 'SnippetController@store');
 
-
+Route::resource('snippets', 'SnippetController');
 Route::get('snippet-category/{id}', 'SnippetController@category');
 
-Route::get('snippets/{id}', 'SnippetController@show');
+
+// Route::get('snippets', 'SnippetController@index');
+// Route::post('snippets', 'SnippetController@store');
+// Route::get('snippets/{id}', 'SnippetController@show');
+// Route::put('snippets/{id}', 'SnippetController@update');
 
 
 
