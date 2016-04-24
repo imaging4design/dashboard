@@ -3,27 +3,6 @@ var angular = angular;
 var app = angular.module('myApp.controllersSnippets', []);
 
 
-
-		/*
-		|-----------------------------------------------------------------------------------------------------------------
-		| NOTE TO GAVIN
-		|-----------------------------------------------------------------------------------------------------------------
-		| EVERY PAGE THAT USES THIS CTRL WILL ENVOKE ALL THESE FUNCTIONS !!!!
-		| IT'S A WASTE AND I THINK SOME ARE CONFLICTING WITH EACH OTHER ...
-		|
-		| BEST SPLIT THE CTRL'S UP INTO THE FOLLOWING:
-		| ONE FOR ALL SNIPPETS - snipAllCtrl
-		| ONE FOR SINGLE SNIPPETS - snipSingleCtrl
-		| ONE FOR CATEGORY OF SNIPPETS - snipCategoryCtrl
-		| ONE FOR CREATING SNIPPETS - snipCreateCtrl (not needed)
-		| ONE FOR EDITING SNIPPETS - snipUpdateCtrl
-		| ONE FOR DELETING SNIPPETS - snipDeleteCtrl
-		|
-		| THIS WILL MAKE THINGS A LITTLE MORE CLEARER ... 
-		|-----------------------------------------------------------------------------------------------------------------
-		*/
-
-
 /*
 |-----------------------------------------------------------------------------------------------------------------
 | NAME :: snipAllCtrl
@@ -53,8 +32,8 @@ app.controller('snipAllCtrl', ['$rootScope', '$scope', '$routeParams', 'SnippetF
 | NAME :: snipSingleCtrl
 |-----------------------------------------------------------------------------------------------------------------
 */
-app.controller('snipSingleCtrl', ['$scope', '$routeParams', 'SnippetsFactory', 'SnippetFactory', 'tabby',
-	function($scope, $routeParams, SnippetsFactory, SnippetFactory, tabby) {
+app.controller('snipSingleCtrl', ['$scope', '$routeParams', '$location', 'SnippetsFactory', 'SnippetFactory', 'tabby',
+	function($scope, $routeParams, $location, SnippetsFactory, SnippetFactory, tabby) {
 
 		/*
 		|-----------------------------------------------------------------------------------------------------------------
@@ -68,7 +47,6 @@ app.controller('snipSingleCtrl', ['$scope', '$routeParams', 'SnippetsFactory', '
 		});
 
 
-
 		/*
 		|-----------------------------------------------------------------------------------------------------------------
 		| CREATES A NEW CATEGORY
@@ -77,11 +55,12 @@ app.controller('snipSingleCtrl', ['$scope', '$routeParams', 'SnippetsFactory', '
 		$scope.createNewSnippet = function() {
 			$scope.addSnippet = SnippetFactory.create($scope.addSnippet);
 			$scope.addSnippet.$promise.then(function(result){
-				$scope.addSnippet = result.successMessage;
+				$scope.addSnippetMessage = result.successMessage;
 			});
+
+			//$location.path('/snippets');
 			console.log($scope.addSnippet.category);
 		};
-
 
 
 		/*
@@ -145,7 +124,7 @@ app.controller('snipUpdateCtrl', ['$rootScope', '$scope', '$routeParams', 'Snipp
 
 			$scope.updateSnippet = SnippetsFactory.update($scope.snippets);
 			$scope.updateSnippet.$promise.then(function(result){
-				$scope.updateSnippet = result.successMessage;
+				$scope.editSnippetMessage = result.successMessage;
 			});
 
 			console.log($scope.snippets);
