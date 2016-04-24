@@ -32,7 +32,7 @@
 		<div class="snippets-list">
 			<ul>
 				 <!-- | filter:{name: search} -->
-				<a ng-repeat="snippet in snippets" href="#/snippets/{{snippet.id}}" ><li>{{snippet.name}}</li></a>
+				<a ng-repeat="snippet in snippets.name | filter:search" href="#/snippets/{{snippet.id}}" ><li>{{snippet.name}}</li></a>
 			</ul>
 		</div>
 

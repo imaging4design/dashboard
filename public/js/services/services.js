@@ -31,3 +31,17 @@ services.factory('SnippetsCatFactory', function($resource) {
 		});
 	});
 
+
+services.factory('tabby', function() {
+       
+		var	foo = function() {
+			var tabby_opts = {tabString:'    '},
+			textarea = $('textarea');
+
+			textarea.tabby(tabby_opts);
+			textarea.height( $(window).height() -400 );
+		}
+
+		return foo;
+        
+    });

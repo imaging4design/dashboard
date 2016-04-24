@@ -20,7 +20,7 @@ class SnippetController extends Controller
 	 */
 	public function index()
 	{
-		$all_snippets = Snippet::orderBy('name', 'ASC')->get()->take(6);
+		$all_snippets = Snippet::orderBy('name', 'ASC')->get()->take(100);
 		$all_snippetCats = SnippetCat::orderBy('id', 'ASC')->get();
 
 		return response()->json(['snippets' => $all_snippets, 'categories' => $all_snippetCats]);
@@ -111,42 +111,18 @@ class SnippetController extends Controller
      * @param  int  $id
      * @return Response
      */
-	public function update($id)
+	public function update(Request $request, $id)
     {
+    	$snippet = Snippet::find($id);
+    	$snippet->name = $request->input('name');
+		$snippet->snippet = $request->input('snippet');
+		$snippet->reference_url = $request->input('reference_url');
+        
+        $snippet->save();
+
         return response()->json(array('successMessage' => 'Snippet Updated!'));
-
-        // validate
-        // read more on validation at http://laravel.com/docs/validation
-        // $rules = array(
-        //     'name'       => 'required',
-        //     'email'      => 'required|email',
-        //     'nerd_level' => 'required|numeric'
-        // );
-
-        // $validator = Validator::make(Input::all(), $rules);
-
-        // // process the login
-        // if ($validator->fails()) {
-        //     return Redirect::to('nerds/' . $id . '/edit')
-        //         ->withErrors($validator)
-        //         ->withInput(Input::except('password'));
-        // } else {
-        //     // store
-        //     $nerd = Nerd::find($id);
-        //     $nerd->name       = Input::get('name');
-        //     $nerd->email      = Input::get('email');
-        //     $nerd->nerd_level = Input::get('nerd_level');
-        //     $nerd->save();
-
-        //     // redirect
-        //     //Session::flash('message', 'Successfully updated nerd!');
-        //     //return Redirect::to('nerds');
-
-        //     return response()->json(array('successMessage' => 'Snippet Updated!'));
-        // }
-
+        
     }
-
 
 
 }

@@ -12,9 +12,11 @@ var app = angular.module('myApp.controllersSnippets', []);
 		| IT'S A WASTE AND I THINK SOME ARE CONFLICTING WITH EACH OTHER ...
 		|
 		| BEST SPLIT THE CTRL'S UP INTO THE FOLLOWING:
-		| ONE FOR LISTING SNIPPETS - snipShowCtrl
-		| ONE FOR CREATING SNIPPETS - snipCreateCtrl
-		| ONE FOR EDITING SNIPPETS - snipEditCtrl
+		| ONE FOR ALL SNIPPETS - snipAllCtrl
+		| ONE FOR SINGLE SNIPPETS - snipSingleCtrl
+		| ONE FOR CATEGORY OF SNIPPETS - snipCategoryCtrl
+		| ONE FOR CREATING SNIPPETS - snipCreateCtrl (not needed)
+		| ONE FOR EDITING SNIPPETS - snipUpdateCtrl
 		| ONE FOR DELETING SNIPPETS - snipDeleteCtrl
 		|
 		| THIS WILL MAKE THINGS A LITTLE MORE CLEARER ... 
@@ -24,27 +26,11 @@ var app = angular.module('myApp.controllersSnippets', []);
 
 /*
 |-----------------------------------------------------------------------------------------------------------------
-| NAME :: snipShowCtrl
+| NAME :: snipAllCtrl
 |-----------------------------------------------------------------------------------------------------------------
 */
-app.controller('snipShowCtrl', ['$rootScope', '$scope', '$routeParams', '$location', 'SnippetFactory', 'SnippetsFactory',
-	function($rootScope, $scope, $routeParams, $location, SnippetFactory, SnippetsFactory) {
-
-
-
-}]);
-
-/*
-|-----------------------------------------------------------------------------------------------------------------
-| NAME :: snippetCtrl
-|-----------------------------------------------------------------------------------------------------------------
-*/
-app.controller('snippetCtrl', ['$rootScope', '$scope', '$routeParams', '$location', 'SnippetFactory', 'SnippetsFactory',
-	function($rootScope, $scope, $routeParams, $location, SnippetFactory, SnippetsFactory) {
-
-
-		
-
+app.controller('snipAllCtrl', ['$rootScope', '$scope', '$routeParams', 'SnippetFactory',
+	function($rootScope, $scope, $routeParams, SnippetFactory) {
 
 		/*
 		|-----------------------------------------------------------------------------------------------------------------
@@ -53,10 +39,22 @@ app.controller('snippetCtrl', ['$rootScope', '$scope', '$routeParams', '$locatio
 		*/
 		$scope.snippets = SnippetFactory.show();
 		$scope.snippets.$promise.then(function(result) {
-			$scope.snippets = result.snippets;
+			$scope.snippets.name = result.snippets;
 			$scope.categories = result.categories;
 		});
 
+
+}]);
+
+
+
+/*
+|-----------------------------------------------------------------------------------------------------------------
+| NAME :: snipSingleCtrl
+|-----------------------------------------------------------------------------------------------------------------
+*/
+app.controller('snipSingleCtrl', ['$scope', '$routeParams', 'SnippetsFactory', 'SnippetFactory', 'tabby',
+	function($scope, $routeParams, SnippetsFactory, SnippetFactory, tabby) {
 
 		/*
 		|-----------------------------------------------------------------------------------------------------------------
@@ -64,22 +62,11 @@ app.controller('snippetCtrl', ['$rootScope', '$scope', '$routeParams', '$locatio
 		|-----------------------------------------------------------------------------------------------------------------
 		*/
 		$scope.singleSnippets = SnippetsFactory.show({id: $routeParams.id});
-
 		$scope.singleSnippets.$promise.then(function(result){
 			$scope.snippets = result.snippets;
 			$scope.categories = result.categories;
 		});
 
-
-		/*
-		|-----------------------------------------------------------------------------------------------------------------
-		| SHOW 'CLICKED ON' CATEGORY
-		|-----------------------------------------------------------------------------------------------------------------
-		*/
-		$rootScope.showCategory = function (obj) {
-			$rootScope.theCategory = obj;
-			console.log('Category is: ' + obj);
-		};
 
 
 		/*
@@ -96,15 +83,57 @@ app.controller('snippetCtrl', ['$rootScope', '$scope', '$routeParams', '$locatio
 		};
 
 
+
 		/*
 		|-----------------------------------------------------------------------------------------------------------------
-		| EDIT A SNIPPET
+		| Envoke 'Tabby' - enables tabbed behaviour in textarea
 		|-----------------------------------------------------------------------------------------------------------------
 		*/
-		$scope.editSnippet = function(obj, id) {
-			$scope.test = obj;
-			console.log( 'Editing snippet: ' + obj + ' id: ' + id );
-		};
+        tabby();
+
+		
+}]);
+
+
+
+/*
+|-----------------------------------------------------------------------------------------------------------------
+| NAME :: snipCategoryCtrl
+|-----------------------------------------------------------------------------------------------------------------
+*/
+app.controller('snipCategoryCtrl', ['$rootScope', '$scope', '$routeParams', 'SnippetsCatFactory',
+	function($rootScope, $scope, $routeParams, SnippetsCatFactory) {
+
+		/*
+		|-----------------------------------------------------------------------------------------------------------------
+		| SHOWS ALL SNIPPETS IN A CATEGORY
+		|-----------------------------------------------------------------------------------------------------------------
+		*/
+		$scope.snippetsPerCategory = SnippetsCatFactory.show({id: $routeParams.id});
+		
+		$scope.snippetsPerCategory.$promise.then(function(result){
+			$scope.snippets = result.snippets;
+			$scope.categories = result.categories;
+		});
+		
+}]);
+
+
+
+/*
+|-----------------------------------------------------------------------------------------------------------------
+| NAME :: snipUpdateCtrl
+|-----------------------------------------------------------------------------------------------------------------
+*/
+app.controller('snipUpdateCtrl', ['$rootScope', '$scope', '$routeParams', 'SnippetsFactory', 'tabby',
+	function($rootScope, $scope, $routeParams, SnippetsFactory, tabby) {
+
+
+		$scope.singleSnippets = SnippetsFactory.show({id: $routeParams.id});
+		$scope.singleSnippets.$promise.then(function(result){
+			$scope.snippets = result.snippets;
+			$scope.categories = result.categories;
+		});
 
 
 		/*
@@ -122,35 +151,15 @@ app.controller('snippetCtrl', ['$rootScope', '$scope', '$routeParams', '$locatio
 			console.log($scope.snippets);
 		};
 
-		// $scope.updateClient = function () {
-		// 	ClientFactory.update($scope.client).$promise.then(function() {
-		// 		$location.path('/client-list/');
-		// 	});
-		// };
-
-
-
-
+		
 		/*
 		|-----------------------------------------------------------------------------------------------------------------
-		| APPLIES 'TABBED' EFFECT FOR TEXTAREA
+		| Envoke 'Tabby' - enables tabbed behaviour in textarea
 		|-----------------------------------------------------------------------------------------------------------------
 		*/
-		(function() {
+        tabby();
+       
 
-            var tabby_opts = {tabString:'    '},
-            textarea = $('textarea');
-
-            textarea.tabby(tabby_opts);
-            textarea.height( $(window).height() -400 );
-
-        })();
-
-		
-
-
-
-		
 }]);
 
 
@@ -159,41 +168,18 @@ app.controller('snippetCtrl', ['$rootScope', '$scope', '$routeParams', '$locatio
 
 /*
 |-----------------------------------------------------------------------------------------------------------------
-| NAME :: snippetCtrl
+| RUN TIME
+| These items will run automatically for each ctrl / page
 |-----------------------------------------------------------------------------------------------------------------
 */
-app.controller('snippetCatCtrl', ['$rootScope', '$scope', '$routeParams', '$location', 'SnippetsCatFactory',
-	function($rootScope, $scope, $routeParams, $location, SnippetsCatFactory) {
+app.run(function($rootScope) {
 
+	$rootScope.showCategory = function (obj) {
+		$rootScope.theCategory = obj;
+		console.log('Category is: ' + obj);
+	};
 
-		/*
-		|-----------------------------------------------------------------------------------------------------------------
-		| SHOW 'CLICKED ON' CATEGORY
-		|-----------------------------------------------------------------------------------------------------------------
-		*/
-		$rootScope.showCategory = function (obj) {
-			$rootScope.theCategory = obj;
-			console.log('Category is: ' + obj);
-		};
-
-
-		/*
-		|-----------------------------------------------------------------------------------------------------------------
-		| SHOWS ALL SNIPPETS IN A CATEGORY
-		|-----------------------------------------------------------------------------------------------------------------
-		*/
-		$scope.snippetsPerCategory = SnippetsCatFactory.show({id: $routeParams.id});
-		
-		$scope.snippetsPerCategory.$promise.then(function(result){
-			$scope.snippets = result.snippets;
-			$scope.categories = result.categories;
-		});
-
-
-}]);
-
-
-
+});
 
 
 /*
