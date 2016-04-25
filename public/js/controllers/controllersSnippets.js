@@ -22,6 +22,7 @@ app.controller('snipAllCtrl', ['$rootScope', '$scope', '$routeParams', 'SnippetF
 			$scope.categories = result.categories;
 			$scope.numSnippets = result.snippets.length;
 		});
+			
 
 
 }]);
@@ -172,6 +173,11 @@ app.run(function($rootScope) {
 		$rootScope.theCategory = obj;
 		console.log('Category is: ' + obj);
 	};
+
+	$rootScope.limit = 10;
+		$rootScope.showLimit = function(obj){
+		$rootScope.limit = obj;
+	}
 
 });
 

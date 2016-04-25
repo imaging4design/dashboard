@@ -30,8 +30,15 @@
 		<div class="snippets-list feature">
 			<h3 class="pull-right">Total Snippets: <span class="badge">{{numSnippets}}</span></h3>
 			<h3>All Code Snippets</h3>
+
+			<a href=""><span class="badge" ng-model="limit" ng-click="showLimit(10);">10</span></a>
+			<a href=""><span class="badge" ng-model="limit" ng-click="showLimit(20);">20</span></a>
+			<a href=""><span class="badge" ng-model="limit" ng-click="showLimit(50);">50</span></a>
+			<a href=""><span class="badge" ng-model="limit" ng-click="showLimit();">ALL</span></a>
+			<br><br>
+
 			<ul>
-				<a ng-repeat="snippet in snippets.name | filter:search" href="#/snippets/{{snippet.id}}" ><li>{{snippet.name}}</li></a>
+				<a ng-repeat="snippet in snippets.name | filter:search | limitTo:limit" href="#/snippets/{{snippet.id}}" ><li>{{snippet.name}}</li></a>
 			</ul>
 		</div>
 

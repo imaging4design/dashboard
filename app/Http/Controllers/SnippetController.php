@@ -20,7 +20,7 @@ class SnippetController extends Controller
 	 */
 	public function index()
 	{
-		$all_snippets = Snippet::orderBy('name', 'ASC')->get()->take(100);
+		$all_snippets = Snippet::orderBy('name', 'ASC')->get();
 		$all_snippetCats = SnippetCat::orderBy('id', 'ASC')->get();
 
 		return response()->json(['snippets' => $all_snippets, 'categories' => $all_snippetCats]);
