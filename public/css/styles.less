@@ -20,14 +20,14 @@
 @font: 'Dosis', sans-serif;
 
 @colWhite: #FFF;
-@colOffWhite: #AAA;
+@colOffWhite: #FAFAFA;
 @colGreyLight: #EEEEEE;
-@colBlue: #2A2D34;
-@colBlueLight: #188CD4;
-@colRed: #F30;
+@colDark: #2A2D34;
+@colBlueLight: #F1C40F;
+@colRed: #E74C3C;
 @colGreen: #25CCA6;
 
-@colMenu: @colGreen;
+@colMenu: @colRed;
 @colSnippets: #F30;
 @colHosting: #354052;
 
@@ -48,6 +48,7 @@
 | STRUCTURE
 |-----------------------------------------------------------------------------------------------------------------
 */
+
 html,body {
 	height:100%;
 	min-height:100%;
@@ -56,6 +57,7 @@ body {
 	font-family: @font;
 	font-weight: 400;
 	padding-top: 15px;
+	background: @colOffWhite;
 }
 
 body:before {
@@ -90,7 +92,7 @@ body:before {
 
 .search-section {
 	color: @colWhite;
-	background: @colGreen;
+	background: @colMenu;
 	height:60px;
 	line-height: 62px;
 	margin-bottom: 20px;
@@ -132,11 +134,11 @@ div.title {
 		margin: 0 1px 1px 0;
 		padding:10px 15px;
 		list-style: none;
-		background: @colBlue;
+		background: @colDark;
 		display: inline-block;
 		text-transform: uppercase;
 		&:hover {
-			background: @colRed;
+			background: @colMenu;
 			.transition;
 		}
 	}
@@ -145,15 +147,23 @@ div.title {
 .snippets-list ul {
 	padding: 0;
 	a li {
-		color: #333;
+		font-weight: 600;
+		color: #666;
 		margin-bottom: 1px;
 		padding:10px;
 		list-style: none;
 		background: @colGreyLight;
+		text-transform: uppercase;
 		&:hover {
 			color:@colWhite;
-			background: @colGreen;
+			background: @colMenu;
 			.transition-slow;
+			&:after {
+				font-family: FontAwesome;
+				content:"\f002";
+				padding-left: 5px;
+				line-height: 1;
+			}
 		}
 	}
 }
@@ -204,6 +214,9 @@ a:focus {
 | FORMS
 |-----------------------------------------------------------------------------------------------------------------
 */
+input[type="text"].search-top {
+	border:0 !important;
+}
 .search-top {
 	border-radius: 100px;
 	margin-top: 13px;
@@ -225,7 +238,7 @@ a:focus {
 	font-weight: 500;
 	line-height: 23px;
 	color: @colWhite;
-	background: @colBlue;
+	background: @colDark;
 }
 
 input[type="text"], textarea {
@@ -237,7 +250,7 @@ input[type="text"], textarea {
 
 .category label {
 	color: @colWhite;
-	background: @colBlue;
+	background: @colDark;
 	margin: 0 1px 0 0;
 	padding-left: 0;
 	padding: 10px 15px;
@@ -290,7 +303,19 @@ input.catRadio:checked {
 | BUTTONS
 |-----------------------------------------------------------------------------------------------------------------
 */
-
+.btn {
+	font-weight: 600;
+	text-transform: uppercase;
+}
+.btn-info {
+	background: @colMenu;
+	border-color: @colMenu;
+	border-radius: 0;
+	&:hover {
+		background: @colDark;
+		border-color: @colDark;
+	} 
+}
 
 /*
 |-----------------------------------------------------------------------------------------------------------------
@@ -309,7 +334,17 @@ input.catRadio:checked {
 |-----------------------------------------------------------------------------------------------------------------
 */
 
-
+input.ng-dirty.ng-invalid,
+textarea.ng-dirty.ng-invalid {
+	border-color: @colRed !important;
+}
+input.ng-dirty.ng-valid {
+	border-color: @colGreen !important;
+	background: lighten(@colGreen, 50%);
+}
+textarea.ng-dirty.ng-valid {
+	border-color: @colGreen !important;
+}
 
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */

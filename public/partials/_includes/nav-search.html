@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col-xs-5">
 				<p class="snippet-type" ng-if='!theCategory'>Select Category</p>
-				<p class="snippet-type">{{theCategory}}</p>
+				<p class="snippet-type"><span ng-if='theCategory'>Category: </span>{{theCategory}}</p>
 			</div>
 		
 			<div class="col-xs-7">

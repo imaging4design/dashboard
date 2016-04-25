@@ -1,6 +1,6 @@
 var angular = angular;
 
-var app = angular.module('myApp.controllersGeneral', []);
+var app = angular.module('myApp.controllersGeneral', ['ngSanitize']);
 
 /*
 |-----------------------------------------------------------------------------------------------------------------
@@ -27,8 +27,7 @@ app.controller('homeCtrl', ['$scope',
 				'parent' : 'Snippets',
 				'child' : {
 					'View Snippets': 'snippets', 
-					'Create Snippet': 'snippet-create',
-					'Category': 'snippets'
+					'Create Snippet': 'snippet-create'
 				}
 			},
 			{

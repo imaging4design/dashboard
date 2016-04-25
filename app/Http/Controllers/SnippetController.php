@@ -38,7 +38,7 @@ class SnippetController extends Controller
 	public function category($id)
 	{
 		$categories = SnippetCat::orderBy('id', 'ASC')->get();
-		$snippets = Snippet::with('snippetCat')->where('snippet_cat_id', $id)->orderBy('id', 'ASC')->get();
+		$snippets = Snippet::with('snippetCat')->where('snippet_cat_id', $id)->orderBy('name', 'ASC')->get();
 
 		return response()->json(['snippets' => $snippets, 'categories' => $categories]);
 	}
@@ -123,6 +123,20 @@ class SnippetController extends Controller
         return response()->json(array('successMessage' => 'Snippet Updated!'));
         
     }
+
+
+
+    /**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		Snippet::destroy($id);
+		return response()->json(array('successMessage' => 'Snippet Deleted!'));
+	}
 
 
 }

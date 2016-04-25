@@ -19,22 +19,22 @@
 
 		<!-- START MAIN CONTENT -->
 		<div class="snippets-category">
-
-			<p>snippet-single.html (snippetCtrl)</p>
-			
 			<ul>
 				<a href="#/snippet-category/{{category.id}}" ng-repeat="category in categories" ng-click="showCategory(category.category);"><li>{{category.category}}</li></a>
 			</ul>
-
 		</div>
+
 
 		<div class="feature">
 			<h3>{{snippets.name}}</h3>
-			<pre class="prettyprint linenums">{{snippets.snippet}}</pre>
+			<pre id="pre" class="prettyprint linenums" select-on-click>{{snippets.snippet}}</pre>
 
 			<p><strong>SITE REFERENCE:</strong> <a ng-href="{{snippets.reference_url}}" target="_blank">SEE HERE</a></p>
 
-			<a href="#/snippets/edit/{{snippets.id}}" class="btn btn-md btn-info" ng-click="editSnippet(snippets.name, snippets.id)">EDIT SNIPPET</a>
+			<a href="#/snippets/edit/{{snippets.id}}" class="btn btn-md btn-info" ng-click="editSnippet(snippets.name, snippets.id)"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Snippet</a>
+
+			<a href="#/snippets/{{snippets.id}}" class="btn btn-md btn-info pull-right" ng-click="deleteSnippet(snippets.id)"><i class="fa fa-trash" aria-hidden="true"></i> Delete Snippet</a>
+
 
 		</div>
 

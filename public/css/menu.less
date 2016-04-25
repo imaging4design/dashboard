@@ -3,11 +3,27 @@
 | MAIN MENU
 |-----------------------------------------------------------------------------------------------------------------
 */
+ul.dropdown-menu {
+	
+	border: none;
+	padding: 0;
+	border-radius: 0;
+	li a {
+		font-weight: 600;
+		text-transform: uppercase;
+		padding: 10px 20px;
+		&:hover {
+			color: @colWhite;
+			background: @colMenu;
+		}
+	}
+}
+
 .container-menu {
-	background: #FFF;
+	background-color: @colWhite;
 }
 .navbar-default {
-	background-color: #FFF;
+	background-color: @colWhite;
 	opacity: 0.95;
 	border-color: @colMenu;
 	-webkit-box-shadow: 0 0px 3px 3px rgba(0,0,0,0.1);
@@ -27,14 +43,20 @@
 
 .navbar-default .navbar-nav > li > a:focus, 
 .navbar-default .navbar-nav > li > a:hover {
-	color: #FFF;
+	color: @colWhite;
 	background-color: @colMenu;
 }
 .navbar-default .navbar-nav > .active > a, 
 .navbar-default .navbar-nav > .active > a:focus, 
 .navbar-default .navbar-nav > .active > a:hover {
-	color: #FFF;
+	color: @colWhite;
 	background-color: @colMenu;
+}
+.navbar-default .navbar-nav > .open > a, 
+.navbar-default .navbar-nav > .open > a:hover, 
+.navbar-default .navbar-nav > .open > a:focus {
+	color: @colWhite;
+    background-color: @colMenu;
 }
 .navbar-nav > li > a {
 	font-size: 1.5em;
@@ -62,7 +84,7 @@
 	padding: 25px 0;
 	font-size: 2em;
 	font-weight: 400;
-	background: @colBlue;
+	background: @colDark;
 	text-align: center;
 	&:hover {
 		background-color: @colMenu !important;
@@ -296,7 +318,7 @@ ul#menu li a i.fa {
 
 .nav-side {
 	color: #999;
-	background: lighten(@colBlue, 5%);
+	background: lighten(@colDark, 5%);
 	p {
 		text-align: center;
 	}
@@ -304,7 +326,7 @@ ul#menu li a i.fa {
 		font-size:20px;
 		font-weight: 700;
 		text-transform: uppercase;
-		background: @colBlue;
+		background: @colDark;
 		padding-left: 15px;
 		margin: 0 -15px 1px -15px;
 		padding: 10px 20px;
@@ -338,7 +360,7 @@ ul#menu li a i.fa {
 		}
 		li a:hover {
 			color: @colWhite;
-			background: @colBlue;
+			background: @colDark;
 			padding-left: 20px;
 			border-left: solid 5px @colRed;
 			text-decoration: none;

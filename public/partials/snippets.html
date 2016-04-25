@@ -16,11 +16,8 @@
 		<!-- Include (nav-search.html) partial -->
 		<div ng-include="'partials/_includes/nav-search.html'"></div>
 
-
 		<!-- START MAIN CONTENT -->
 		<div class="snippets-category">
-
-			<p>snippets.html (snippetCtrl)</p>
 			
 			<ul>
 				<a href="#/snippet-category/{{category.id}}" ng-repeat="category in categories" ng-click="showCategory(category.category);"><li>{{category.category}}</li></a>
@@ -29,9 +26,9 @@
 		</div>
 
 		<!-- LIST SNIPPET TITLES FOR EACH CATEGORY -->
-		<div class="snippets-list">
+		<div class="snippets-list feature">
+			<h3>All Code Snippets</h3>
 			<ul>
-				 <!-- | filter:{name: search} -->
 				<a ng-repeat="snippet in snippets.name | filter:search" href="#/snippets/{{snippet.id}}" ><li>{{snippet.name}}</li></a>
 			</ul>
 		</div>

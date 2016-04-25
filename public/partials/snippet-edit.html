@@ -22,9 +22,6 @@
 
 		<!-- START MAIN CONTENT -->
 		<div class="snippets-category">
-
-			<p>snippet-edit.html (snippetCtrl)</p>
-
 			<ul>
 				<a href="#/snippet-category/{{category.id}}" ng-repeat="category in categories" ng-click="showCategory(category.category);"><li>{{category.category}}</li></a>
 			</ul>
@@ -42,7 +39,7 @@
 						<input type="text" class="form-control" ng-value="{{snippets.reference_url}}" ng-model="snippets.reference_url">
 					</div>
 					<div class="col-sm-2">
-						<button ng-click="updateSnippet()" class="btn btn-md btn-info">Update Snippet</button>
+						<button ng-click="updateSnippet()" class="btn btn-md btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i> Update Snippet</button>
 					</div>
 				</div>
 				<div class="row form-group">

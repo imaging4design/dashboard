@@ -20,7 +20,8 @@ services.factory('SnippetFactory', function($resource) {
 services.factory('SnippetsFactory', function($resource) {
 		return $resource('/laravel_dashboard/public/snippets/:id', {}, {
 			show: { method: 'GET', isArray: false },
-			update: { method: 'PUT', params: {id: '@id'} }
+			update: { method: 'PUT', params: {id: '@id'} },
+			delete: { method: 'DELETE', params: {id: '@id'} }
 		});
 	});
 

@@ -35,6 +35,7 @@ app.controller('snipAllCtrl', ['$rootScope', '$scope', '$routeParams', 'SnippetF
 app.controller('snipSingleCtrl', ['$scope', '$routeParams', '$location', 'SnippetsFactory', 'SnippetFactory', 'tabby',
 	function($scope, $routeParams, $location, SnippetsFactory, SnippetFactory, tabby) {
 
+
 		/*
 		|-----------------------------------------------------------------------------------------------------------------
 		| SHOW A (SINGLE) SPECIFIC SNIPPET
@@ -49,7 +50,7 @@ app.controller('snipSingleCtrl', ['$scope', '$routeParams', '$location', 'Snippe
 
 		/*
 		|-----------------------------------------------------------------------------------------------------------------
-		| CREATES A NEW CATEGORY
+		| CREATES A NEW SNIPPET
 		|-----------------------------------------------------------------------------------------------------------------
 		*/
 		$scope.createNewSnippet = function() {
@@ -58,8 +59,21 @@ app.controller('snipSingleCtrl', ['$scope', '$routeParams', '$location', 'Snippe
 				$scope.addSnippetMessage = result.successMessage;
 			});
 
-			//$location.path('/snippets');
-			console.log($scope.addSnippet.category);
+			$location.path('/snippet-category/' + $scope.addSnippet.category);
+			//console.log('What is the category id: ' + $scope.addSnippet.category);
+		};
+
+
+		/*
+		|-----------------------------------------------------------------------------------------------------------------
+		| DELETE A SNIPPET
+		|-----------------------------------------------------------------------------------------------------------------
+		*/
+		$scope.deleteSnippet = function (snippetID) {
+			SnippetsFactory.delete({ id: snippetID }).$promise.then(function(result){
+				$location.path('/snippets');
+			});
+			
 		};
 
 
@@ -104,8 +118,8 @@ app.controller('snipCategoryCtrl', ['$rootScope', '$scope', '$routeParams', 'Sni
 | NAME :: snipUpdateCtrl
 |-----------------------------------------------------------------------------------------------------------------
 */
-app.controller('snipUpdateCtrl', ['$rootScope', '$scope', '$routeParams', 'SnippetsFactory', 'tabby',
-	function($rootScope, $scope, $routeParams, SnippetsFactory, tabby) {
+app.controller('snipUpdateCtrl', ['$rootScope', '$scope', '$routeParams', '$location', 'SnippetsFactory', 'tabby',
+	function($rootScope, $scope, $routeParams, $location, SnippetsFactory, tabby) {
 
 
 		$scope.singleSnippets = SnippetsFactory.show({id: $routeParams.id});
@@ -125,6 +139,7 @@ app.controller('snipUpdateCtrl', ['$rootScope', '$scope', '$routeParams', 'Snipp
 			$scope.updateSnippet = SnippetsFactory.update($scope.snippets);
 			$scope.updateSnippet.$promise.then(function(result){
 				$scope.editSnippetMessage = result.successMessage;
+				$location.path('/snippets/' + $routeParams.id);
 			});
 
 			console.log($scope.snippets);
@@ -140,8 +155,6 @@ app.controller('snipUpdateCtrl', ['$rootScope', '$scope', '$routeParams', 'Snipp
        
 
 }]);
-
-
 
 
 
@@ -167,6 +180,7 @@ app.run(function($rootScope) {
 |-----------------------------------------------------------------------------------------------------------------
 */
 
+// Applies the 'prettyprint' styling 
 app.directive('prettyprint', function() {
     return {
         restrict: 'C',
@@ -177,7 +191,7 @@ app.directive('prettyprint', function() {
 });
 
 
-
+// Animates the top menu bar to smaller on scroll
 app.directive('menuAnimate', function ($window) {
     return function(scope, element, attrs) {
         angular.element($window).bind("scroll", function() {
@@ -211,3 +225,18 @@ app.directive('menuAnimate', function ($window) {
     };
 });
 
+
+// Enables 'all text' to be selected on focus ..
+app.directive('selectOnClick', function ($window) {
+    return {
+        link: function (scope, element) {
+            element.on('click', function () {
+                var selection = $window.getSelection();        
+                var range = document.createRange();
+                range.selectNodeContents(element[0]);
+                selection.removeAllRanges();
+                selection.addRange(range);
+            });
+        }
+    }
+});
