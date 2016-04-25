@@ -36,6 +36,7 @@
 
 		<!-- LIST SNIPPET TITLES FOR EACH CATEGORY -->
 		<div class="snippets-list feature">
+			<h3 class="pull-right">Total Snippets: <span class="badge">{{numSnippets}}</span></h3>
 			<h3>{{theCategory}} <span ng-if='theCategory'>Snippets</span></h3>
 			<ul>
 				<a ng-repeat="snippet in snippets | filter:{name: search}" href="#/snippets/{{snippet.id}}" ><li>{{snippet.name}}</li></a>

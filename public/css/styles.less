@@ -26,6 +26,7 @@
 @colBlueLight: #F1C40F;
 @colRed: #E74C3C;
 @colGreen: #25CCA6;
+@colPurple: #9B59B6;
 
 @colMenu: @colRed;
 @colSnippets: #F30;
@@ -48,15 +49,10 @@
 | STRUCTURE
 |-----------------------------------------------------------------------------------------------------------------
 */
-
-html,body {
-	height:100%;
-	min-height:100%;
-}
 body {
 	font-family: @font;
 	font-weight: 400;
-	padding-top: 15px;
+	padding-top: 45px;
 	background: @colOffWhite;
 }
 
@@ -326,7 +322,10 @@ input.catRadio:checked {
 	padding-left: 0;
 	padding-right: 0;
 }
-
+.badge {
+	margin-top: -5px;
+	background: @colMenu;
+}
 
 /*
 |-----------------------------------------------------------------------------------------------------------------
@@ -351,6 +350,11 @@ textarea.ng-dirty.ng-valid {
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+
+	html,body {
+		height:100%;
+		min-height:100%;
+	}
 
 	body {
 		padding-top: 70px;

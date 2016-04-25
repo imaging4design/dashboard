@@ -24,9 +24,11 @@
 			</ul>
 
 		</div>
+		
 
 		<!-- LIST SNIPPET TITLES FOR EACH CATEGORY -->
 		<div class="snippets-list feature">
+			<h3 class="pull-right">Total Snippets: <span class="badge">{{numSnippets}}</span></h3>
 			<h3>All Code Snippets</h3>
 			<ul>
 				<a ng-repeat="snippet in snippets.name | filter:search" href="#/snippets/{{snippet.id}}" ><li>{{snippet.name}}</li></a>

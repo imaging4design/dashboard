@@ -20,6 +20,7 @@ app.controller('snipAllCtrl', ['$rootScope', '$scope', '$routeParams', 'SnippetF
 		$scope.snippets.$promise.then(function(result) {
 			$scope.snippets.name = result.snippets;
 			$scope.categories = result.categories;
+			$scope.numSnippets = result.snippets.length;
 		});
 
 
@@ -107,6 +108,7 @@ app.controller('snipCategoryCtrl', ['$rootScope', '$scope', '$routeParams', 'Sni
 		$scope.snippetsPerCategory.$promise.then(function(result){
 			$scope.snippets = result.snippets;
 			$scope.categories = result.categories;
+			$scope.numSnippets = result.snippets.length;
 		});
 		
 }]);

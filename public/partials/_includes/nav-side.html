@@ -1,11 +1,13 @@
 <!-- Col Left -->
-<img src="img/gavin_lovegrove.png" class="center-block">
+<div class="hidden-xs">
+	<img src="img/gavin_lovegrove.png" class="center-block">
 
-<div class="user-name">Hello <strong>Gavin</strong> <span class="caret"></span></div>
+	<div class="user-name">Hello <strong>Gavin</strong> <span class="caret"></span></div>
 
-<div ng-repeat="division in divisions">
-	<h3>{{division.parent}}</h3>
-	<ul>
-		<li ng-repeat="(key, value) in division.child"><a href="#/{{value}}">{{key}}</a></li>
-	</ul>
+	<div ng-repeat="division in divisions">
+		<h3>{{division.parent}}</h3>
+		<ul>
+			<li ng-repeat="(key, value) in division.child"><a href="#/{{value}}">{{key}}</a></li>
+		</ul>
+	</div>
 </div>

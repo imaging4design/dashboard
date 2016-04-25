@@ -29,13 +29,6 @@ app.controller('homeCtrl', ['$scope',
 					'View Snippets': 'snippets', 
 					'Create Snippet': 'snippet-create'
 				}
-			},
-			{
-				'parent' : 'Other',
-				'child' : {
-					'Misc Stuff': 'test', 
-					'More Cool Stuff': 'test'
-				}
 			}
 		];
 

@@ -26,10 +26,9 @@
 
 
 		<div class="feature">
+			<h3 class="pull-right"><strong>SITE REFERENCE: <a ng-href="{{snippets.reference_url}}" target="_blank">WEBSITE</a></strong></h3>
 			<h3>{{snippets.name}}</h3>
 			<pre id="pre" class="prettyprint linenums" select-on-click>{{snippets.snippet}}</pre>
-
-			<p><strong>SITE REFERENCE:</strong> <a ng-href="{{snippets.reference_url}}" target="_blank">SEE HERE</a></p>
 
 			<a href="#/snippets/edit/{{snippets.id}}" class="btn btn-md btn-info" ng-click="editSnippet(snippets.name, snippets.id)"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Snippet</a>
 
