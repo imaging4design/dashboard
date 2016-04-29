@@ -11,6 +11,7 @@
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet"><!-- Font Awesome -->
         <link rel="stylesheet" href="css/bootstrap.css"><!-- Twitter Bootstrap -->
         <link rel="stylesheet" href="css/styles.css"><!-- Custom Styles -->
+        <link rel="stylesheet" href="css/nga.min.css"><!-- Animation Styles -->
         <link rel="stylesheet" href="js/lib/google-code-prettify/prettify.css"><!-- Custom Styles -->
 
         <style type="text/css">
@@ -40,7 +41,7 @@
 
 
         <!-- JS -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script><!-- Angular JS 1.5.0 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script><!-- Angular JS 1.5.0 -->
         <script src="//code.jquery.com/jquery-1.12.0.min.js"></script><!-- jQuery 1.12.0 -->
         <script src="js/lib/google-code-prettify/prettify.js"></script><!-- Google Prettify JS -->
                 

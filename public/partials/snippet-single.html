@@ -16,13 +16,8 @@
 		<!-- Include (nav-search.html) partial -->
 		<div ng-include="'partials/_includes/nav-search.html'"></div>
 
-
-		<!-- START MAIN CONTENT -->
-		<div class="snippets-category">
-			<ul>
-				<a href="#/snippet-category/{{category.id}}" ng-repeat="category in categories" ng-click="showCategory(category.category);"><li>{{category.category}}</li></a>
-			</ul>
-		</div>
+		<!-- Include (the-categories.html) partial -->
+		<div ng-include="'partials/the-categories.html'"></div>
 
 
 		<div class="feature">
@@ -33,8 +28,6 @@
 			<a href="#/snippets/edit/{{snippets.id}}" class="btn btn-md btn-info" ng-click="editSnippet(snippets.name, snippets.id)"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Snippet</a>
 
 			<a href="#/snippets/{{snippets.id}}" class="btn btn-md btn-info pull-right" ng-click="deleteSnippet(snippets.id)"><i class="fa fa-trash" aria-hidden="true"></i> Delete Snippet</a>
-
-
 		</div>
 
 

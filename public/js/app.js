@@ -1,7 +1,7 @@
 //app.js
 //var app = angular.module('App', ['ui.router','ui.bootstrap']);
 
-var myApp = angular.module('myApp', ['myApp.services', 'myApp.controllersGeneral', 'myApp.controllersSnippets', 'ngRoute', 'ngSanitize'])
+var myApp = angular.module('myApp', ['myApp.services', 'myApp.controllersGeneral', 'myApp.controllersSnippets', 'ngRoute', 'ngSanitize', 'ngAnimate'])
 	.config(['$routeProvider', function ($routeProvider) {
 
 		/*

@@ -23,7 +23,7 @@
 @colOffWhite: #FAFAFA;
 @colGreyLight: #EEEEEE;
 @colDark: #2A2D34;
-@colBlueLight: #F1C40F;
+@colGold: #F1C40F;
 @colRed: #E74C3C;
 @colGreen: #25CCA6;
 @colPurple: #9B59B6;
@@ -111,7 +111,7 @@ div.title {
 
 .feature {
 	background: #FFF;
-	padding: 20px 20px 10px 20px;
+	padding: 20px 10px 0 10px;
 	border: solid 1px #EBEBEB;
 	border-radius: 4px;
 	-webkit-box-shadow: 0 0 3px 3px rgba(0,0,0,0.02);
@@ -128,10 +128,10 @@ div.title {
 	a li {
 		color: @colWhite;
 		margin: 0 1px 1px 0;
-		padding:10px 15px;
+		padding: 5px 15px;
 		list-style: none;
 		background: @colDark;
-		display: inline-block;
+		display: block;
 		text-transform: uppercase;
 		&:hover {
 			background: @colMenu;
@@ -146,7 +146,7 @@ div.title {
 		font-weight: 600;
 		color: #666;
 		margin-bottom: 1px;
-		padding:10px;
+		padding: 5px 10px;
 		list-style: none;
 		background: @colGreyLight;
 		text-transform: uppercase;
@@ -345,6 +345,44 @@ textarea.ng-dirty.ng-valid {
 	border-color: @colGreen !important;
 }
 
+
+
+.category-animate.ng-enter {
+	opacity: 0;
+	transition: opacity .9s linear;
+}
+.category-animate.ng-enter-active {
+	opacity: 1;
+}
+.category-animate.ng-leave-active {
+	opacity: 0;
+}
+
+.dash-animate.ng-enter, 
+.dash-animate.ng-leave { 
+    -webkit-transition: .3s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: .3s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: .3s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: .3s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: .3s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    position: relative;
+    display: block;
+} 
+ 
+.dash-animate.ng-leave.dash-animate.ng-leave-active,
+.dash-animate.ng-enter {
+     opacity: 1;
+    top: 0;
+    height: 30px;
+}        
+ 
+.dash-animate.ng-enter.dash-animate.ng-enter-active,
+.dash-animate.ng-leave {
+     opacity: 0;
+    top: -50px;
+    height: 0px;
+}
+
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
 
@@ -362,6 +400,23 @@ textarea.ng-dirty.ng-valid {
 
 	.category label {
 		display: inline-block;
+	}
+
+	.snippets-category {
+		a li {
+			display: inline-block;
+			padding:10px 15px;
+		}
+	}
+
+	.feature {
+		padding: 20px 20px 10px 20px;
+	}
+
+	.snippets-list ul {
+		a li {
+			padding: 10px;
+		}
 	}
   
 }
