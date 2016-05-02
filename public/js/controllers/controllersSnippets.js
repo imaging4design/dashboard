@@ -188,6 +188,19 @@ app.run(function($rootScope) {
 |-----------------------------------------------------------------------------------------------------------------
 */
 
+// Back button directive
+app.directive('backButton', function(){
+    return {
+        restrict: 'A',
+            link: function(scope, element, attrs) {
+			element.bind('click', function () {
+			    history.back();
+			    scope.$apply();
+			});
+	    }
+	}
+});
+
 // Applies the 'prettyprint' styling 
 app.directive('prettyprint', function() {
     return {
