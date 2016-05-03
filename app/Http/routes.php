@@ -16,6 +16,10 @@ Route::get('/', function () {
     //return Response::json(array('success' => true));
 });
 
+Route::group(array('prefix' => 'api'), function() {
+	Route::post('auth/login', 'AuthController@login');
+	Route::get('auth/logout', 'AuthController@logout');
+});
 
 Route::resource('snippets', 'SnippetController');
 Route::get('snippet-category/{id}', 'SnippetController@category');

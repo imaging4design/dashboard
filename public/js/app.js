@@ -54,16 +54,24 @@ var myApp = angular.module('myApp', ['myApp.services', 'myApp.controllersGeneral
 
 
 
-
-
-
-
+		/*
+		|-----------------------------------------------------------------------------------------------------------------
+		| DEFAULT & LOGIN Routes when no matches from above
+		|-----------------------------------------------------------------------------------------------------------------
+		*/
+		$routeProvider.when('/login', // Show login form
+			{
+				templateUrl: 'partials/login.html',
+				controller: 'LoginCtrl'
+			});
 
 		//If none of the above routes exist - redirect to /login (default)
 		$routeProvider.otherwise(
 			{
-				redirectTo: '/default',
+				redirectTo: '/login'
 			});
+
+
 
 
 

@@ -5,6 +5,27 @@ var app = angular.module('myApp.controllersSnippets', []);
 
 /*
 |-----------------------------------------------------------------------------------------------------------------
+| NAME :: LoginCtrl
+| Methods :: Login | Logout
+|-----------------------------------------------------------------------------------------------------------------
+*/
+app.controller('LoginCtrl', ['$rootScope', '$scope', '$location', 'AuthenticationService',
+	function($rootScope, $scope, $location, AuthenticationService) {
+
+	//$scope.credentials = { username: "", password: "" }
+
+	$scope.login = function() {
+		AuthenticationService.login($scope.credentials).success(function() {
+			$location.path('/snippets');
+		});
+	};
+
+	// GLOBAL LOGOUT CAN BE FOUND IN 'app.js' UNDER 'run()'
+	
+}]);
+
+/*
+|-----------------------------------------------------------------------------------------------------------------
 | NAME :: snipAllCtrl
 |-----------------------------------------------------------------------------------------------------------------
 */
