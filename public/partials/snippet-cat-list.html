@@ -3,7 +3,7 @@
 
 <div class="row full-height">
 
-	<div class="col-sm-3 nav-side full-height">
+	<div class="col-sm-2 nav-side full-height">
 
 		<!-- INCLUDE (nav-side.html) partial -->
 		<span ng-include="'partials/_includes/nav-side.html'"></span>
@@ -11,21 +11,10 @@
 	</div><!-- ENDS col -->
 
 
-	<div class="col-sm-9 col-right full-height">
+	<div class="col-sm-7 col-right full-height">
 
 		<!-- Include (nav-search.html) partial -->
 		<div ng-include="'partials/_includes/nav-search.html'"></div>
-
-		<!-- Include (the-categories.html) partial -->
-		<div ng-include="'partials/the-categories.html'"></div>
-
-		<!-- IF NO RESULTS RETURNED SHOW INTRO TEXT -->
-		<div ng-if='snippets.length === 0'>
-			<h2>Welome to snippets central</h2>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu viverra diam. Phasellus imperdiet nunc nulla, eu ullamcorper felis lobortis vitae. Donec euismod odio in sapien vehicula, vitae tincidunt lectus lobortis. Sed justo lorem, pretium ut tristique nec, cursus ac arcu. Quisque vitae tortor tortor. Sed ut quam pulvinar, vulputate leo vitae, aliquam quam. Praesent quis lectus tortor. Donec ultrices viverra ultrices. Vivamus lobortis eu justo eget placerat. Maecenas blandit nisl eu nibh faucibus porta. Praesent mi dui, ultricies ut dolor ut, efficitur feugiat velit. Mauris lacus nisi, placerat sed blandit non, placerat nec diam. 
-			</p>
-		</div>
 		
 
 		<!-- LIST SNIPPET TITLES FOR EACH CATEGORY -->
@@ -33,18 +22,28 @@
 			<h3 class="pull-right">Total Snippets: <span class="badge">{{numSnippets}}</span></h3>
 			<h3>{{theCategory}} <span ng-if='theCategory'>Snippets</span></h3>
 
+			<!-- Include (the-categories.html) partial -->
+			<div ng-include="'partials/the-categories.html'"></div>
+
 			<a href=""><span class="badge" ng-model="limit" ng-click="showLimit(10);">10</span></a>
 			<a href=""><span class="badge" ng-model="limit" ng-click="showLimit(20);">20</span></a>
 			<a href=""><span class="badge" ng-model="limit" ng-click="showLimit(50);">50</span></a>
 			<a href=""><span class="badge" ng-model="limit" ng-click="showLimit();">ALL</span></a>
 			<br><br>
 
-			<ul>
+			<ul class="list">
 				<a class="nga-fast nga-stagger-fast nga-slide-down" ng-repeat="snippet in snippets | filter:{name: search} | limitTo:limit" href="#/snippets/{{snippet.id}}" ><li>{{snippet.name}}</li></a>
 			</ul>
 		</div>
 
+	</div><!-- ENDS col -->
 
+
+	<div class="col-sm-3 nav-side full-height">
+
+		<!-- INCLUDE (nav-side.html) partial -->
+		<span ng-include="'partials/_includes/right-side.html'"></span>
+		
 	</div><!-- ENDS col -->
 
 </div><!--ENDS row-->

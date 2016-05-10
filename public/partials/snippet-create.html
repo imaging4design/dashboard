@@ -3,7 +3,7 @@
 
 <div class="row full-height">
 
-	<div class="col-sm-3 nav-side full-height">
+	<div class="col-sm-2 nav-side full-height">
 
 		<!-- INCLUDE (nav-side.html) partial -->
 		<span ng-include="'partials/_includes/nav-side.html'"></span>
@@ -11,7 +11,7 @@
 	</div><!-- ENDS col -->
 
 
-	<div class="col-sm-9 col-right full-height">
+	<div class="col-sm-7 col-right full-height">
 
 		<!-- Include (nav-search.html) partial -->
 		<div ng-include="'partials/_includes/nav-search.html'"></div>
@@ -34,26 +34,38 @@
 				</div>
 
 				<div class="row form-group">
-					<div class="col-sm-6">
+					<div class="col-md-8">
 						<input type="text" class="form-control ng-pristine ng-invalid" ng-model="addSnippet.name" placeholder="Snippet Name" ng-minlength="3" required>
 					</div>
-					<div class="col-sm-4">
-						<input type="url" class="form-control ng-pristine ng-invalid" ng-model="addSnippet.reference_url" placeholder="Snippet URL Ref">
+					<div class="col-md-2">
+						<a href="http://www.dirtymarkup.com/" target="_blank" class="btn btn-info btn-block"><i class="fa fa-leaf" aria-hidden="true"></i> Clean Me</a>
 					</div>
-					<div class="col-sm-2">
+					<div class="col-md-2">
 						<button class="btn btn-info btn-block" ng-disabled="!createSnippetForm.$valid"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<textarea class="form-control snippet-textarea" ng-model="addSnippet.snippet" rows="20" ng-minlength="8" required></textarea>
+					<textarea id="tabby" class="form-control snippet-textarea" ng-model="addSnippet.snippet" rows="20" ng-minlength="8" required></textarea>
+				</div>
+
+				<div class="row form-group">
+					<div class="col-md-8">
+						<input type="url" class="form-control ng-pristine ng-invalid" ng-model="addSnippet.reference_url" placeholder="Snippet URL Ref">
+					</div>
 				</div>
 				
 			</fieldset>
 		</form>
-		
-		
 
+	</div><!-- ENDS col -->
+
+
+	<div class="col-sm-3 nav-side full-height">
+
+		<!-- INCLUDE (nav-side.html) partial -->
+		<span ng-include="'partials/_includes/right-side.html'"></span>
+		
 	</div><!-- ENDS col -->
 
 </div><!--ENDS row-->

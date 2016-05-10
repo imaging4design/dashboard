@@ -3,7 +3,7 @@
 
 <div class="row full-height">
 
-	<div class="col-sm-3 nav-side full-height">
+	<div class="col-sm-2 nav-side full-height">
 
 		<!-- INCLUDE (nav-side.html) partial -->
 		<span ng-include="'partials/_includes/nav-side.html'" id="side-nav"></span>
@@ -11,27 +11,44 @@
 	</div><!-- ENDS col -->
 
 
-	<div class="col-sm-9 col-right full-height">
+	<div class="col-sm-7 col-right full-height">
 
 		<!-- Include (nav-search.html) partial -->
 		<div ng-include="'partials/_includes/nav-search.html'"></div>
 
-		<!-- Include (the-categories.html) partial -->
-		<div ng-include="'partials/the-categories.html'"></div>
-
-
 		<div class="feature">
 			<h3 class="pull-right"><strong>SITE REFERENCE: <a ng-href="{{snippets.reference_url}}" target="_blank">WEBSITE</a></strong></h3>
 			<h3>{{snippets.name}}</h3>
-			<pre id="pre" class="prettyprint linenums" select-on-click>{{snippets.snippet}}</pre>
 
-			<a href="#/snippets/edit/{{snippets.id}}" class="btn btn-md btn-info" ng-click="editSnippet(snippets.name, snippets.id)"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Snippet</a>
+			<!-- Include (the-categories.html) partial 
+			<div ng-include="'partials/the-categories.html'"></div>-->
 
-			<a href="#/snippets/{{snippets.id}}" class="btn btn-md btn-info pull-right" ng-click="deleteSnippet(snippets.id)"><i class="fa fa-trash" aria-hidden="true"></i> Delete Snippet</a>
+			<div class="row form-group">
+				<div class="col-md-3">
+					<a href="#/snippets/edit/{{snippets.id}}" class="btn btn-md btn-info btn-block" ng-click="editSnippet(snippets.name, snippets.id)"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+				</div>
+				<div class="col-md-3 col-md-offset-6">
+					<a href="#/snippets/{{snippets.id}}" class="btn btn-md btn-info btn-block" ng-click="deleteSnippet(snippets.id)"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+				</div>
+			</div>			
+
+			<div class="row">
+				<div class="col-md-12">
+					<pre id="pre" class="prettyprint linenums" select-on-click>{{snippets.snippet}}</pre>
+				</div>
+			</div><!--ENDS row-->
+			
+
 		</div>
 
+	</div><!-- ENDS col -->
+	
 
+	<div class="col-sm-3 nav-side full-height">
 
+		<!-- INCLUDE (nav-side.html) partial -->
+		<span ng-include="'partials/_includes/right-side.html'"></span>
+		
 	</div><!-- ENDS col -->
 
 </div><!--ENDS row-->

@@ -108,7 +108,7 @@ services.factory('SnippetsCatFactory', function($resource) {
 
 services.factory('tabby', function() {
        
-		var	foo = function() {
+		var	footab = function() {
 			var tabby_opts = {tabString:'    '},
 			textarea = $('textarea');
 
@@ -116,6 +116,7 @@ services.factory('tabby', function() {
 			textarea.height( $(window).height() -400 );
 		}
 
-		return foo;
+		return footab;
         
     });
+

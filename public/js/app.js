@@ -1,7 +1,7 @@
 //app.js
 //var app = angular.module('App', ['ui.router','ui.bootstrap']);
 
-var myApp = angular.module('myApp', ['myApp.services', 'myApp.controllersGeneral', 'myApp.controllersSnippets', 'ngRoute', 'ngSanitize', 'ngAnimate'])
+var myApp = angular.module('myApp', ['myApp.services', 'myApp.controllersGeneral', 'myApp.controllersSnippets', 'ngtweet', 'ngRoute', 'ngSanitize', 'ngAnimate'])
 	.config(['$routeProvider', function ($routeProvider) {
 
 		/*
@@ -53,7 +53,6 @@ var myApp = angular.module('myApp', ['myApp.services', 'myApp.controllersGeneral
 
 
 
-
 		/*
 		|-----------------------------------------------------------------------------------------------------------------
 		| DEFAULT & LOGIN Routes when no matches from above
@@ -72,9 +71,62 @@ var myApp = angular.module('myApp', ['myApp.services', 'myApp.controllersGeneral
 			});
 
 
-
-
-
 	}]);
+
+
+
+myApp.config(function($httpProvider){
+	var logsOutUseron401 = function($location, $q, SessionService, FlashService) {
+		var success = function(response){
+			return response;
+		};
+		var error = function(response){
+			if(response.status === 401) { //HTTP Not Authorised!
+				SessionService.unset('authenticated');
+				FlashService.show(response.data.flash);
+				$location.path('/login');
+				return $q.reject(response);
+			} else {
+				return $q.reject(response);
+			}
+
+		};
+
+		return function(promise){
+			return promise.then(success, error);
+		};
+	};
+});
+
+
+
+/*
+|-----------------------------------------------------------------------------------------------------------------
+| ON RUN!
+|-----------------------------------------------------------------------------------------------------------------
+*/
+
+// Run these functions at load (makes these globally accessible)
+myApp.run(function($rootScope, $location, AuthenticationService, FlashService) {
+
+	// Whitelist (the /login page is the only page that does NOT require Auth!) .. all other pages do!
+	var routesThatRequireAuth = ['/login'];
+
+	// Requires (underscore-min.js) in index.php!
+	$rootScope.$on('$routeChangeStart', function(event, current, previous) {
+		if( !_(routesThatRequireAuth).contains($location.path()) && !AuthenticationService.isLoggedIn() ) {
+			//console.log('not logged in');
+			$location.path('/login');
+			FlashService.show('Please login to continue ...');
+		}
+	});
+
+	$rootScope.logout = function() {
+		AuthenticationService.logout().success(function() {
+			$location.path('/login');
+		});
+	};
+
+});
 
 	

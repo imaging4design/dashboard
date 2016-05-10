@@ -10,22 +10,10 @@ use Dashboard\User;
 
 class AuthController extends Controller {
 
-
 	public function login(Request $request) {
 
-		// if (Auth::attempt([
-		// 	'email' => $request->input('email'), 
-		// 	'password' => Hash::make($request->input('password'))
-		// ])) {
-
-
-		if (Auth::attempt([
-			'email' => 'gavin@imaging4design.co.nz', 
-			'password' => 'gbl8742'
-		])) {
-
+		if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
 			return response()->json(Auth::user());
-
 		} else {
 			return response()->json(array('flash' => 'Invalid username or password!'), 500);
 		}
@@ -37,5 +25,3 @@ class AuthController extends Controller {
 	}
 
 }
-
-

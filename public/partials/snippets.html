@@ -3,7 +3,7 @@
 
 <div class="row full-height">
 
-	<div class="col-sm-3 nav-side full-height">
+	<div class="col-sm-2 nav-side full-height">
 
 		<!-- INCLUDE (nav-side.html) partial -->
 		<span ng-include="'partials/_includes/nav-side.html'"></span>
@@ -11,14 +11,11 @@
 	</div><!-- ENDS col -->
 
 
-	<div class="col-sm-9 col-right full-height">
+	<div class="col-sm-7 col-right full-height">
 
 		<!-- Include (nav-search.html) partial -->
 		<div ng-include="'partials/_includes/nav-search.html'"></div>
 
-		<!-- Include (the-categories.html) partial -->
-		<div ng-include="'partials/the-categories.html'"></div>
-		
 
 		<!-- LIST SNIPPET TITLES FOR EACH CATEGORY -->
 		<div class="snippets-list feature">
@@ -26,14 +23,17 @@
 			<h3 class="pull-right">Total Snippets: <span class="badge">{{numSnippets}}</span></h3>
 			<h3>All Code Snippets</h3>
 
+			<!-- Include (the-categories.html) partial -->
+			<div ng-include="'partials/the-categories-drop.html'"></div>
+
 			<a href=""><span class="badge" ng-model="limit" ng-click="showLimit(10);">10</span></a>
 			<a href=""><span class="badge" ng-model="limit" ng-click="showLimit(20);">20</span></a>
 			<a href=""><span class="badge" ng-model="limit" ng-click="showLimit(50);">50</span></a>
 			<a href=""><span class="badge" ng-model="limit" ng-click="showLimit();">ALL</span></a>
 			<br><br>
 
-			<ul>
-				<a class="nga-fast nga-stagger-fast nga-slide-down" ng-repeat="snippet in snippets.name | filter:search | limitTo:limit" href="#/snippets/{{snippet.id}}"><li>{{snippet.name}}</li></a>
+			<ul class="list">
+				<a class="nga-fast nga-stagger-fast nga-slide-down" ng-repeat="snippet in snippets.name | filter:searchCat | filter:search | limitTo:limit" href="#/snippets/{{snippet.id}}"><li>{{snippet.name}}</li></a>
 			</ul>
 		</div>
 
@@ -41,4 +41,11 @@
 
 	</div><!-- ENDS col -->
 
-</div><!--ENDS row
+	<div class="col-sm-3 right-side full-height">
+
+		<!-- INCLUDE (nav-side.html) partial -->
+		<span ng-include="'partials/_includes/right-side.html'"></span>
+		
+	</div><!-- ENDS col -->
+
+</div><!--ENDS row -->

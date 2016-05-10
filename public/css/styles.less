@@ -20,17 +20,21 @@
 @font: 'Dosis', sans-serif;
 
 @colWhite: #FFF;
-@colOffWhite: #FAFAFA;
+@colOffWhite: #F5F8FA;
 @colGreyLight: #EEEEEE;
-@colDark: #2A2D34;
+@colDark: #292F33;
 @colGold: #F1C40F;
-@colRed: #E74C3C;
-@colGreen: #25CCA6;
+@colRed: #C0392B;
+@colGreen: #1b95e0;
 @colPurple: #9B59B6;
+@colOrange: #E05E00;
+@colBlue: #3DAABF;
 
-@colMenu: @colRed;
+@colMenu: @colOrange;
 @colSnippets: #F30;
 @colHosting: #354052;
+
+@cubic: cubic-bezier(0.77, 0.2, 0.05, 1.0);
 
 .transition {
 	transition: all 0.2s cubic-bezier(0.77, 0.2, 0.05, 1.0);
@@ -56,23 +60,17 @@ body {
 	background: @colOffWhite;
 }
 
-body:before {
-	content: "";
-	position: fixed;
-	top: -10px;
-	left: 0;
-	width: 100%;
-	height: 10px;
-	-webkit-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
-	-moz-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
-	box-shadow: 0px 0px 10px rgba(0,0,0,.8);
-	z-index: 100;
+
+
+.login-background { 
+	background: @colMenu;
 }
 
 .main-container,
 .container-fluid.full-height, 
 .row.full-height,
-.nav-side.full-height {
+.nav-side.full-height,
+.right-side.full-height {
 	height:100%;
 	min-height:100%;
 }
@@ -110,12 +108,10 @@ div.title {
 }
 
 .feature {
-	background: #FFF;
 	padding: 20px 10px 0 10px;
-	border: solid 1px #EBEBEB;
-	border-radius: 4px;
-	-webkit-box-shadow: 0 0 3px 3px rgba(0,0,0,0.02);
-	box-shadow: 0 0 3px 3px rgba(0,0,0,0.02);
+	background-color: #fff;
+    border: 1px solid #e1e8ed;
+    border-radius: 5px 5px 0 0;
 }
 
 .snippets-category {
@@ -126,30 +122,37 @@ div.title {
 		clear: both;
 	}
 	a li {
+		font-weight: 600;
 		color: @colWhite;
 		margin: 0 1px 1px 0;
-		padding: 5px 15px;
+		padding: 7px 15px !important;
 		list-style: none;
-		background: @colDark;
+		background: @colMenu;
 		display: block;
 		text-transform: uppercase;
 		&:hover {
-			background: @colMenu;
+			color: @colWhite;
+			background: darken(@colMenu, 10%);
 			.transition;
 		}
 	}
 }
 
-.snippets-list ul {
+.snippets-list ul.list {
 	padding: 0;
 	a li {
 		font-weight: 600;
 		color: #666;
-		margin-bottom: 1px;
-		padding: 5px 10px;
+		padding: 7px 10px;
 		list-style: none;
-		background: @colGreyLight;
+		background: @colOffWhite;
 		text-transform: uppercase;
+
+		background-color: #fff;
+		border: 1px solid #e1e8ed;
+		border-top: none;
+		border-radius: 0;
+
 		&:hover {
 			color:@colWhite;
 			background: @colMenu;
@@ -162,7 +165,17 @@ div.title {
 			}
 		}
 	}
+	a:first-child li {
+		border-top: 1px solid #e1e8ed;
+		border-radius: 5px 5px 0 0;
+	}
+	a:last-child li {
+		border-top: none;
+		border-radius: 0 0 5px 5px;
+	}
+
 }
+
 
 
 /*
@@ -198,10 +211,15 @@ p.snippet-type {
 | LINKS
 |-----------------------------------------------------------------------------------------------------------------
 */
+a {
+	color: @colGreen;
+	outline: 0;
+}
 a:hover,
 a:active,
 a:focus {
-	outline: 0;
+	color: @colRed;
+	outline: none;
 	text-decoration: none;
 }
 
@@ -210,6 +228,41 @@ a:focus {
 | FORMS
 |-----------------------------------------------------------------------------------------------------------------
 */
+span.disable-href {
+	outline: none;
+	cursor: default;
+    pointer-events: none;
+    text-decoration: none;
+}
+.input-hide {
+	left: 550px;
+	transition: all .5s @cubic;
+}
+.input-show {
+	left: 0;
+	transition: all .5s @cubic;
+}
+.cg-top-container {
+	position: relative;
+	height:150px;
+
+}
+.cg-top {
+	position: absolute;
+	top: 0;
+	width:100%;
+}
+.login fieldset {
+	background: @colOffWhite;
+	padding: 30px 30px 0px 30px;
+	-webkit-border-radius: 6px 6px 6px 6px;
+	border-radius: 6px 6px 6px 6px;
+	-webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 0 8px 6px -6px black;
+    overflow: hidden;
+}
+
 input[type="text"].search-top {
 	border:0 !important;
 }
@@ -246,12 +299,15 @@ input[type="text"], textarea {
 
 .category label {
 	color: @colWhite;
-	background: @colDark;
+	background: @colMenu;
 	margin: 0 1px 0 0;
 	padding-left: 0;
-	padding: 10px 15px;
+	padding: 6px 15px;
 	text-transform: uppercase;
 	display: block;
+	&:hover {
+		background: darken(@colMenu, 10%);
+	}
 }
 
 
@@ -271,7 +327,7 @@ input.catRadio + .fa-symbol {
 	display: none;
 }
 input.catRadio:checked + .fa-symbol {
-	color: @colGreen;
+	color: @colWhite;
 	display: inline-block;
 }
 
@@ -291,7 +347,9 @@ input.catRadio:checked {
 | IMAGES
 |-----------------------------------------------------------------------------------------------------------------
 */
-
+.logo-img {
+	margin-bottom: 10px;
+}
 
 
 /*
@@ -302,6 +360,7 @@ input.catRadio:checked {
 .btn {
 	font-weight: 600;
 	text-transform: uppercase;
+	border-radius: 0;
 }
 .btn-info {
 	background: @colMenu;
@@ -312,6 +371,8 @@ input.catRadio:checked {
 		border-color: @colDark;
 	} 
 }
+
+
 
 /*
 |-----------------------------------------------------------------------------------------------------------------
@@ -326,7 +387,23 @@ input.catRadio:checked {
 	margin-top: -5px;
 	background: @colMenu;
 }
+.rotate-left {
+    -moz-animation: spins .6s @cubic;
+}
 
+@-moz-keyframes spins {
+    0%  {-moz-transform: rotate(0deg);}
+    100% {-moz-transform: rotate(360deg);}   
+}
+
+.rotate-right {
+    -moz-animation: spin .6s @cubic;
+}
+
+@-moz-keyframes spin {
+    0%  {-moz-transform: rotate(0deg);}
+    100% {-moz-transform: rotate(-360deg);} 
+}
 /*
 |-----------------------------------------------------------------------------------------------------------------
 | ANGULAR JS SPECIFIC

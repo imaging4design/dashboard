@@ -3,39 +3,45 @@
 		<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
 
 
-			<img src="img/LD_Logo.svg" width="260" height="auto" class="center-block">
-
 			<!-- I'm a comment that changed -->
-			<form name="loginForm" class="form-horizontal" ng-submit="login()">
+			<form name="loginForm" key-down class="form-horizontal login" ng-submit="loginForm.$valid && login()" novalidate>
 
-				<!-- USERNAME -->
-				<div class="control-group">
-					<label class="control-label" for="email"></label>
-					<div class="controls input-group">
-						<span class="input-group-addon"><i class="fa fa-user"></i></span>
-						<input type="text" name="email" id="email" class="form-control input-lg" placeholder="Username" ng-model="credentials.email" required>
-					</div>
-				</div>
+				<fieldset>
+
+					<img src="img/gavin_lovegrove.png" ng-click="nextForm('b')" width="100" height="auto" class="center-block logo-img">
+					<img src="img/LD_Logo.svg" width="260" height="auto" class="center-block hidden-xs">
+					<img src="img/LD_Logo.svg" width="160" height="auto" class="center-block visible-xs">
+
+					<div class="cg-top-container">
+
+						<!-- USERNAME -->
+						<div class="control-group cg-top" ng-class="(move) ? 'input-hide' : 'input-show'">
+							<label class="control-label" for="email"></label>
+							<input type="email" name="email" id="email" class="form-control input-lg ng-pristine ng-invalid" placeholder="Username" ng-model="credentials.email" required>
+
+							<br>
+
+							<span class="btn btn-info btn-block" ng-class="(!loginForm.$valid) ? 'disable-href' : ''" ng-click="nextForm('f')">Next <i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
+						</div>
+
+					
 
 
-				<!-- PASSWORD -->
-				<div class="control-group">
-				<label class="control-label" for="password"></label>
-					<div class="controls input-group">
-						<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-						<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" ng-model="credentials.password" required>
-					</div>
-				</div>
+						<!-- PASSWORD -->
+						<div class="control-group cg-top" ng-class="(move) ? 'input-show' : 'input-hide'">
+							<label class="control-label" for="password"></label>
+							<input type="password" name="password" id="password" class="form-control input-lg ng-pristine ng-invalid"  placeholder="Password" ng-model="credentials.password" required>
 
+							<br>
+						
+							<button type="submit" class="btn btn-info btn-block" data-trigger-change="#password,#email" ng-show="!flash" ng-disabled="!loginForm.$valid">Sign in  <i class="fa fa-check"></i></button>
 
-				<!-- SUBMIT -->
-				<br>
-				<div class="control-group">
-					<div class="controls">
-						<button type="submit" class="btn btn-lg btn-login btn-block" data-trigger-change="#password,#email" ng-show="!flash">Sign in  <i class="fa fa-check"></i></button>
-						<button type="submit" class="btn btn-lg btn-login btn-block" data-trigger-change="#password,#email" ng-show="flash"><i class="fa fa-refresh fa-spin"></i> {{flash}}</button>
-					</div>
-				</div>
+							<button type="submit" class="btn btn-danger btn-block" data-trigger-change="#password,#email" ng-show="flash"><i class="fa fa-refresh fa-spin"></i> {{flash}}</button>
+						</div>
+
+					</div><!-- ENDS cg-top-container -->
+
+				</fieldset><!-- ENDS fieldset -->
 				
 										
 			</form><!-- ENDS form -->

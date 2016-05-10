@@ -3,7 +3,7 @@
 
 <div class="row full-height">
 
-	<div class="col-sm-3 nav-side full-height">
+	<div class="col-sm-2 nav-side full-height">
 
 		<!-- INCLUDE (nav-side.html) partial -->
 		<span ng-include="'partials/_includes/nav-side.html'"></span>
@@ -11,26 +11,27 @@
 	</div><!-- ENDS col -->
 
 
-	<div class="col-sm-9 col-right full-height">
+	<div class="col-sm-7 col-right full-height">
 
 		<!-- Include (nav-search.html) partial -->
 		<div ng-include="'partials/_includes/nav-search.html'"></div>
 
-		<!-- Include (the-categories.html) partial -->
-		<div ng-include="'partials/the-categories.html'"></div>
-		
-
 		<form novalidate="novalidate" class="feature">
 			<fieldset class="category">
+
+				<h3>{{snippets.name}}</h3>
+				<!-- Include (the-categories.html) partial 
+				<div ng-include="'partials/the-categories.html'"></div>-->
+
 				<div class="row form-group">
-					<div class="col-sm-6">
+					<div class="col-md-8">
 						<input type="hidden" ng-value="{{snippets.id}}" ng-model="snippets.id">
 						<input type="text" class="form-control" ng-value="{{snippets.name}}" ng-model="snippets.name">
 					</div>
-					<div class="col-sm-4">
-						<input type="text" class="form-control" ng-value="{{snippets.reference_url}}" ng-model="snippets.reference_url">
+					<div class="col-md-2">
+						<a href="http://www.dirtymarkup.com/" target="_blank" class="btn btn-info"><i class="fa fa-leaf" aria-hidden="true"></i> Clean Me</a>
 					</div>
-					<div class="col-sm-2">
+					<div class="col-md-2">
 						<button ng-click="updateSnippet()" class="btn btn-info btn-block"><i class="fa fa-floppy-o" aria-hidden="true"></i> Update</button>
 					</div>
 				</div>
@@ -39,10 +40,26 @@
 						<textarea class="form-control snippet-textarea" ng-model="snippets.snippet" >{{snippets.snippet}}</textarea>
 					</div>
 				</div>
+
+				<div class="row form-group">
+					<div class="col-md-8">
+						<input type="text" class="form-control" ng-value="{{snippets.reference_url}}" ng-model="snippets.reference_url">
+					</div>
+				</div>
+
+				
+				
 			</fieldset>
 		</form>
 
+	</div><!-- ENDS col -->
+	
 
+	<div class="col-sm-3 nav-side full-height">
+
+		<!-- INCLUDE (nav-side.html) partial -->
+		<span ng-include="'partials/_includes/right-side.html'"></span>
+		
 	</div><!-- ENDS col -->
 
 </div><!--ENDS row-->

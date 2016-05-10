@@ -27,7 +27,7 @@
 
     </head>
 
-    <body ng-cloak>
+    <body ng-cloak ng-class="loginCSSClass()">
     
 
         <!-- Add your site or application content here -->
@@ -58,6 +58,7 @@
         <script src="js/lib/angular-cookies.min.js"></script>
         <script src="js/lib/angular-sanitize.min.js"></script>
         <script src="js/lib/underscore-min.js"></script>
+        <script src="js/lib/ngtweet.min.js"></script>
 
         <script src="js/lib/ui-bootstrap.min.js"></script>
 

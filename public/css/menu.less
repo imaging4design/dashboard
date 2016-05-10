@@ -89,6 +89,7 @@ ul.dropdown-menu {
 	&:hover {
 		background-color: @colMenu !important;
 	}
+	opacity: 1 !important;
 }
 .navbar-brand.translate {
 	.transition;
@@ -318,7 +319,7 @@ ul#menu li a i.fa {
 
 .nav-side {
 	color: #999;
-	background: lighten(@colDark, 5%);
+	background: @colDark;
 	p {
 		text-align: center;
 	}
@@ -360,7 +361,7 @@ ul#menu li a i.fa {
 		}
 		li a:hover {
 			color: @colWhite;
-			background: @colDark;
+			background: darken(@colDark, 3%);
 			padding-left: 20px;
 			border-left: solid 5px @colMenu;
 			text-decoration: none;
@@ -368,3 +369,16 @@ ul#menu li a i.fa {
 	}
 	
 }
+
+/*
+|-----------------------------------------------------------------------------------------------------------------
+| RIGHT SIDE COLUMN
+|-----------------------------------------------------------------------------------------------------------------
+*/
+.right-side {
+	background: @colDark;
+}
+
+
+
+

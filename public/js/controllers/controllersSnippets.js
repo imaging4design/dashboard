@@ -12,6 +12,7 @@ var app = angular.module('myApp.controllersSnippets', []);
 app.controller('LoginCtrl', ['$rootScope', '$scope', '$location', 'AuthenticationService',
 	function($rootScope, $scope, $location, AuthenticationService) {
 
+
 	//$scope.credentials = { username: "", password: "" }
 
 	$scope.login = function() {
@@ -20,9 +21,31 @@ app.controller('LoginCtrl', ['$rootScope', '$scope', '$location', 'Authenticatio
 		});
 	};
 
-	// GLOBAL LOGOUT CAN BE FOUND IN 'app.js' UNDER 'run()'
+	// Customise the background colour for login page only
+	$rootScope.loginCSSClass = function() {
+		if( $location.path() === '/login' ) {
+			return 'login-background';
+		} else {
+			return '';
+		}
+	}
+
+
+	$scope.nextForm = function(direction) {
+
+		if(direction === 'f') {
+			$scope.move = true;
+		} else {
+			$scope.move = false;
+		}
+		
+	}
+
+
 	
 }]);
+
+
 
 /*
 |-----------------------------------------------------------------------------------------------------------------
@@ -42,8 +65,7 @@ app.controller('snipAllCtrl', ['$rootScope', '$scope', '$routeParams', 'SnippetF
 			$scope.snippets.name = result.snippets;
 			$scope.categories = result.categories;
 			$scope.numSnippets = result.snippets.length;
-		});
-			
+		});			
 
 
 }]);
@@ -200,6 +222,20 @@ app.run(function($rootScope) {
 		$rootScope.limit = obj;
 	}
 
+
+
+	$rootScope.$on('$routeChangeStart', function(event, current, previous) {
+
+		// Alternates a CSS class on image
+		if( $rootScope.rotate === false ) {
+			$rootScope.rotate = true;
+		} else {
+			$rootScope.rotate = false;
+		}
+		
+	});
+	   
+
 });
 
 
@@ -278,6 +314,20 @@ app.directive('selectOnClick', function ($window) {
                 range.selectNodeContents(element[0]);
                 selection.removeAllRanges();
                 selection.addRange(range);
+            });
+        }
+    }
+});
+
+
+// Prevent 'tabbing' key behaviour in login form
+app.directive('keyDown', function ($window) {
+    return {
+        link: function (scope, element) {
+            element.on('keydown', function (e) {
+                if(e.keyCode==9){
+					e.preventDefault();
+				}
             });
         }
     }
