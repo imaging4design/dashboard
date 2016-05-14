@@ -24,13 +24,13 @@
 @colGreyLight: #EEEEEE;
 @colDark: #292F33;
 @colGold: #F1C40F;
-@colRed: #C0392B;
-@colGreen: #1b95e0;
+@colRed: #E85B54;
+@colGreen: #26C281;
 @colPurple: #9B59B6;
 @colOrange: #E05E00;
-@colBlue: #3DAABF;
+@colBlue: #4498EE;
 
-@colMenu: @colOrange;
+@colMenu: @colBlue;
 @colSnippets: #F30;
 @colHosting: #354052;
 
@@ -63,7 +63,20 @@ body {
 
 
 .login-background { 
-	background: @colMenu;
+	background-color: @colMenu;
+	background: url('../img/background.jpg');
+	background-size: cover;
+	fieldset {
+		background: rgba(0,0,0, 0.4) !important;
+	}
+	.form-control {
+		border:none;
+	}
+	img {
+		border-radius: 100px;
+		border: solid 10px @colWhite;
+		padding: 5px;
+	}
 }
 
 .main-container,
@@ -228,11 +241,19 @@ a:focus {
 | FORMS
 |-----------------------------------------------------------------------------------------------------------------
 */
-span.disable-href {
+.disable-href {
 	outline: none;
 	cursor: default;
     pointer-events: none;
     text-decoration: none;
+    opacity: .6;
+}
+.enable-href {
+	outline: none;
+	cursor: pointer;
+    pointer-events: auto;
+    text-decoration: none;
+    opacity: 1;
 }
 .input-hide {
 	left: 550px;
@@ -360,14 +381,22 @@ input.catRadio:checked {
 .btn {
 	font-weight: 600;
 	text-transform: uppercase;
-	border-radius: 0;
+	border-radius: 4px;
 }
 .btn-info {
 	background: @colMenu;
-	border-color: @colMenu;
-	border-radius: 0;
+	border: solid 1px none !important;
+	border-radius: 4px;
 	&:hover {
-		background: @colDark;
+		background: darken(@colMenu, 10%);
+		border-color: @colDark;
+	}
+	&:active {
+		background: darken(@colMenu, 10%) !important;
+		border-color: @colDark;
+	} 
+	&:focus {
+		background: darken(@colMenu, 10%) !important;
 		border-color: @colDark;
 	} 
 }
@@ -379,6 +408,10 @@ input.catRadio:checked {
 | MISC
 |-----------------------------------------------------------------------------------------------------------------
 */
+.no-gutter > [class*='col-'] {
+    padding-right:3px;
+    padding-left:3px;
+}
 .no-padding {
 	padding-left: 0;
 	padding-right: 0;

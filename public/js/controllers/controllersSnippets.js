@@ -65,7 +65,34 @@ app.controller('snipAllCtrl', ['$rootScope', '$scope', '$routeParams', 'SnippetF
 			$scope.snippets.name = result.snippets;
 			$scope.categories = result.categories;
 			$scope.numSnippets = result.snippets.length;
-		});			
+		});
+
+		$scope.catIDConvert = function(obj) {
+			console.log(obj);
+			
+			switch(obj) {
+			case '1':
+				$rootScope.theCategory = 'CSS';
+				break;
+			case '2':
+				$rootScope.theCategory = 'jQuery';
+				break;
+			case '3':
+				$rootScope.theCategory = 'Javascript';
+				break;
+			case '4':
+				$rootScope.theCategory = 'PHP';
+				break;
+			case '5':
+				$rootScope.theCategory = 'HTML';
+				break;
+			case '6':
+				$rootScope.theCategory = 'MISC';
+				break;
+			default:
+				$rootScope.theCategory = 'ALL';
+			} 
+		}	
 
 
 }]);

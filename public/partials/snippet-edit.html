@@ -11,7 +11,7 @@
 	</div><!-- ENDS col -->
 
 
-	<div class="col-sm-7 col-right full-height">
+	<div class="col-sm-10 col-right full-height">
 
 		<!-- Include (nav-search.html) partial -->
 		<div ng-include="'partials/_includes/nav-search.html'"></div>
@@ -29,7 +29,7 @@
 						<input type="text" class="form-control" ng-value="{{snippets.name}}" ng-model="snippets.name">
 					</div>
 					<div class="col-md-2">
-						<a href="http://www.dirtymarkup.com/" target="_blank" class="btn btn-info"><i class="fa fa-leaf" aria-hidden="true"></i> Clean Me</a>
+						<a href="http://www.dirtymarkup.com/" target="_blank" class="btn btn-info btn-block"><i class="fa fa-leaf" aria-hidden="true"></i> Clean Me</a>
 					</div>
 					<div class="col-md-2">
 						<button ng-click="updateSnippet()" class="btn btn-info btn-block"><i class="fa fa-floppy-o" aria-hidden="true"></i> Update</button>
@@ -52,14 +52,6 @@
 			</fieldset>
 		</form>
 
-	</div><!-- ENDS col -->
-	
-
-	<div class="col-sm-3 nav-side full-height">
-
-		<!-- INCLUDE (nav-side.html) partial -->
-		<span ng-include="'partials/_includes/right-side.html'"></span>
-		
 	</div><!-- ENDS col -->
 
 </div><!--ENDS row-->

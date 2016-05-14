@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-sm-4">
 
-			<select ng-model="$parent.searchCat.snippet_cat_id" class="form-control">
+			<select ng-model="$parent.searchCat.snippet_cat_id" class="form-control" ng-change="catIDConvert($parent.searchCat.snippet_cat_id)">
 				<option value="">Show All</option>
 				<option ng-repeat="category in categories" value="{{category.id}}">{{category.category}}</option>
 			</select>
