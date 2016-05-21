@@ -34,8 +34,11 @@
 				</div>
 
 				<div class="row form-group">
-					<div class="col-md-8">
+					<div class="col-md-4">
 						<input type="text" class="form-control ng-pristine ng-invalid" ng-model="addSnippet.name" placeholder="Snippet Name" ng-minlength="3" required>
+					</div>
+					<div class="col-md-4">
+						<input type="url" class="form-control ng-pristine ng-invalid" ng-model="addSnippet.reference_url" placeholder="Snippet URL Ref">
 					</div>
 					<div class="col-md-2">
 						<a href="http://www.dirtymarkup.com/" target="_blank" class="btn btn-info btn-block"><i class="fa fa-leaf" aria-hidden="true"></i> Clean Me</a>
@@ -49,11 +52,7 @@
 					<textarea id="tabby" class="form-control snippet-textarea" ng-model="addSnippet.snippet" rows="20" ng-minlength="8" required></textarea>
 				</div>
 
-				<div class="row form-group">
-					<div class="col-md-8">
-						<input type="url" class="form-control ng-pristine ng-invalid" ng-model="addSnippet.reference_url" placeholder="Snippet URL Ref">
-					</div>
-				</div>
+				
 				
 			</fieldset>
 		</form>

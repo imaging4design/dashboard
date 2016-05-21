@@ -24,9 +24,12 @@
 				<div ng-include="'partials/the-categories.html'"></div>-->
 
 				<div class="row form-group">
-					<div class="col-md-8">
+					<div class="col-md-4">
 						<input type="hidden" ng-value="{{snippets.id}}" ng-model="snippets.id">
 						<input type="text" class="form-control" ng-value="{{snippets.name}}" ng-model="snippets.name">
+					</div>
+					<div class="col-md-4">
+						<input type="url" class="form-control" ng-value="{{snippets.reference_url}}" ng-model="snippets.reference_url" placeholder="Snippet URL Ref">
 					</div>
 					<div class="col-md-2">
 						<a href="http://www.dirtymarkup.com/" target="_blank" class="btn btn-info btn-block"><i class="fa fa-leaf" aria-hidden="true"></i> Clean Me</a>
@@ -40,14 +43,6 @@
 						<textarea class="form-control snippet-textarea" ng-model="snippets.snippet" >{{snippets.snippet}}</textarea>
 					</div>
 				</div>
-
-				<div class="row form-group">
-					<div class="col-md-8">
-						<input type="text" class="form-control" ng-value="{{snippets.reference_url}}" ng-model="snippets.reference_url">
-					</div>
-				</div>
-
-				
 				
 			</fieldset>
 		</form>
